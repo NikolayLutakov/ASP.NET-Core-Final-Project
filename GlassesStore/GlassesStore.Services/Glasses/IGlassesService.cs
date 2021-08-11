@@ -21,6 +21,15 @@ namespace GlassesStore.Services.Glasses
             int brandId,
             int typeId);
 
+        public bool Edit(
+            int id,
+            string modelName,
+            string description,
+            decimal price,
+            string imageUrl,
+            int brandId,
+            int typeId);
+
         IEnumerable<GlassesServiceModel> All();
     }
 }

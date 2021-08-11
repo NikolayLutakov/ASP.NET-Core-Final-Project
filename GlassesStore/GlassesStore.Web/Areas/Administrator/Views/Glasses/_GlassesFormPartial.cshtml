@@ -3,6 +3,7 @@
 <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
     <h2 class="text-center">Add Glasses</h2>
     <form method="post">
+        <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
         <div class="form-group">
             <label asp-for="@Model.ModelName"></label>
             <input asp-for="@Model.ModelName" class="form-control" placeholder="Enter model..">

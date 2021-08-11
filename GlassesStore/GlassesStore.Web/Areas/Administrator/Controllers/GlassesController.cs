@@ -58,14 +58,43 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
 
         public IActionResult Edit(int id)
         {
-            var result = PopulateCollections(id, new GlassesFormViewModel());
+            var model = PopulateCollections(id, new GlassesFormViewModel());
 
-            if (result == null)
+            if (model == null)
             {
                 return BadRequest();
             }
 
-            return View(result);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(GlassesFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(PopulateCollections(model.Id, new GlassesFormViewModel()));
+            }
+
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            if (!glassesService.Edit(
+                model.Id,
+                model.ModelName,
+                model.Description,
+                model.Price,
+                model.ImageUrl,
+                model.BrandId,
+                model.TypeId
+                ))
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("Index", "Glasses");
         }
 
         private GlassesFormViewModel PopulateCollections(int id, GlassesFormViewModel model)

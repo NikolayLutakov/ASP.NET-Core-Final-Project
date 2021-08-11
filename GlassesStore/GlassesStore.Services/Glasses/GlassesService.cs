@@ -70,6 +70,44 @@ namespace GlassesStore.Services.Glasses
             return true;
         }
 
+        public bool Edit(
+           int id,
+           string modelName,
+           string description,
+           decimal price,
+           string imageUrl,
+           int brandId,
+           int typeId)
+        {
+            var brand = data.Brands.Find(brandId);
+            var type = data.GlassesTypes.Find(typeId);
+            var glasses = data.Glasses.Find(id);
+
+            if (brand == null || type == null || glasses == null)
+            {
+                return false;
+            }
+
+            glasses.Model = modelName;
+            glasses.Description = description;
+            glasses.Price = price;
+            glasses.ImageUrl = imageUrl;
+            glasses.Brand = brand;
+            glasses.Type = type;
+
+            try
+            {
+                data.Update(glasses);
+                data.SaveChanges();
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public IEnumerable<GlassesServiceModel> All()
             => data.Glasses.ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider);
 
