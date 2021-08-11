@@ -9,6 +9,8 @@ namespace GlassesStore.Services.Glasses
 {
     public interface IGlassesService
     {
+        IEnumerable<GlassesServiceModel> All();
+
         GlassesFormServiceModel PopulateBookFormModel();
 
         GlassesFormServiceModel PopulateBookFormModel(int id);
@@ -30,6 +32,6 @@ namespace GlassesStore.Services.Glasses
             int brandId,
             int typeId);
 
-        IEnumerable<GlassesServiceModel> All();
+        public bool Delete(int id);
     }
 }

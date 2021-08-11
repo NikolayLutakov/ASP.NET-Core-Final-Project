@@ -1,12 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 using GlassesStore.Services.Glasses;
 using GlassesStore.Web.Areas.Administrator.Models.Glasses;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GlassesStore.Web.Areas.Administrator.Controllers
 {
@@ -118,6 +114,17 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
 
             return model;
         }
+
+        public IActionResult Delete(int id)
+        {
+            if (!glassesService.Delete(id))
+            {
+                return BadRequest();
+            }
+            
+            return RedirectToAction("Index", "Glasses");
+        }
+
         private GlassesFormViewModel PopulateCollections(GlassesFormViewModel model)
         {
             var collections = mapper.Map<GlassesFormViewModel>(glassesService.PopulateBookFormModel());

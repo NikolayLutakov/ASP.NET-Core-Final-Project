@@ -108,6 +108,28 @@ namespace GlassesStore.Services.Glasses
             return true;
         }
 
+        public bool Delete(int id)
+        {
+            var glassesToDelete = data.Glasses.Find(id);
+
+            if (glassesToDelete == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                data.Remove(glassesToDelete);
+                data.SaveChanges();
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public IEnumerable<GlassesServiceModel> All()
             => data.Glasses.ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider);
 
