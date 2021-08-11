@@ -1,0 +1,40 @@
+﻿@model List<UserViewModel>
+
+@{
+    ViewData["Title"] = "All Users";
+}
+
+<h1 class="text-center">User</h1>
+
+<div class="row col-md-12 offset-0">
+    @foreach (var user in Model)
+    {
+        <div class="card col-md-5 mb-3 mx-auto">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">@user.UserName</li>
+                @if (user.Role != null)
+                {
+                    <li class="list-group-item">@user.Role</li>
+                }
+            </ul>
+            <div class="card-body">
+                @if (user.Role != AdministratorRoleName)
+                {
+                    <a asp-controller="User" asp-action="MakeAdmin" asp-route-id="@user.Id" class="btn btn-warning float-left">Make Administrator</a>
+                }
+                else
+                {
+                    if (this.User.Identity.Name != user.UserName)
+                    {
+                        <a asp-controller="User" asp-action="RevokeAdmin" asp-route-id="@user.Id" class="btn btn-danger float-right">Revoke Rights</a>
+                    }
+                    else
+                    {
+                        <span class="text-success">Current user</span>
+                    }
+                }
+            </div>
+        </div>
+    }
+</div>
+© 2021 GitHub, Inc.
