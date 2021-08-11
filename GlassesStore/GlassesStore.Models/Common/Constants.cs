@@ -10,6 +10,7 @@ namespace GlassesStore.Models.Common
     {
         public const int NameMinLength = 1;
         public const int NameMaxLength = 25;
+        public const int DescriptionMinLength = 10;
         public const int DescriptionMaxLength = 250;
 
         public class Card

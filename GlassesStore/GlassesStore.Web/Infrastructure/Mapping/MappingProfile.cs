@@ -40,9 +40,14 @@ namespace GlassesStore.Web.Infrastructure.Mapping
 
             this.CreateMap<GlassesFormServiceModel, GlassesFormViewModel>();
 
-            this.CreateMap<Brand, BrandServiceModel>();
+            this.CreateMap<Brand, BrandServiceModel>()
+                .ForMember(g => g.HasGlasses, 
+                                cfg => cfg.MapFrom(g => g.Glasses
+                                                          .Count() == 0 ? false : true));
 
             this.CreateMap<BrandServiceModel, BrandViewModel>();
+
+            this.CreateMap<BrandServiceModel, BrandFormViewModel>();
 
             this.CreateMap<GlassesType, GlassesTypeServiceModel>();
         }

@@ -11,11 +11,13 @@ namespace GlassesStore.Web.Areas.Administrator.Models.Glasses
         public int Id { get; set; }
 
         [Required]
+        [MinLength(NameMinLength)]
         [MaxLength(NameMaxLength)]
         [Display(Name = "Model")]
         public string ModelName { get; set; }
 
         [Required]
+        [MinLength(DescriptionMinLength)]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 

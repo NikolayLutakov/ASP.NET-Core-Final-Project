@@ -26,5 +26,46 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
             return View(model);
         }
 
+        public IActionResult Add()
+        {
+            return View(new BrandFormViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult Add(BrandFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (!brandService.Add(model.Name, model.Description))
+            {
+                return BadRequest();
+            }
+            
+            return RedirectToAction("Index", "Brand");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            return View(mapper.Map<BrandFormViewModel>(brandService.GetById(id)));
+        }
+
+        [HttpPost]
+        public IActionResult Edit(BrandFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (!brandService.Edit(model.Id, model.Name, model.Description))
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("Index", "Brand");
+        }
     }
 }

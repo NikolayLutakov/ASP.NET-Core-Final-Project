@@ -4,12 +4,15 @@
     <ul class="list-group list-group-flush">
         @foreach (var brand in Model)
         {
-        <li class="list-group-item">
-            @brand.Name,
-            @brand.Description,
-            <a asp-controller="Brand" asp-action="Edit" asp-route-id="@brand.Id" class="btn btn-warning">Edit</a>
-            <a asp-controller="Brand" asp-action="Delete" asp-route-id="@brand.Id" class="btn btn-danger">Delete</a>
-        </li>
+            <li class="list-group-item">
+                @brand.Name
+                @brand.Description
+                <a asp-controller="Brand" asp-action="Edit" asp-route-id="@brand.Id" class="btn btn-warning">Edit</a>
+                @if (!brand.HasGlasses)
+                {
+                    <a asp-controller="Brand" asp-action="Delete" asp-route-id="@brand.Id" class="btn btn-danger">Delete</a>
+                }
+            </li>
         }
     </ul>
 </div>
