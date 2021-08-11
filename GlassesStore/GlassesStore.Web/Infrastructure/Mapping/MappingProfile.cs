@@ -4,6 +4,7 @@ using GlassesStore.Services.Brand.Models;
 using GlassesStore.Services.Glasses.Models;
 using GlassesStore.Services.GlassesType.Models;
 using GlassesStore.Services.Users.Models;
+using GlassesStore.Web.Areas.Administrator.Models.Brand;
 using GlassesStore.Web.Areas.Administrator.Models.Glasses;
 using GlassesStore.Web.Areas.Administrator.Models.User;
 using Microsoft.AspNetCore.Identity;
@@ -40,6 +41,8 @@ namespace GlassesStore.Web.Infrastructure.Mapping
             this.CreateMap<GlassesFormServiceModel, GlassesFormViewModel>();
 
             this.CreateMap<Brand, BrandServiceModel>();
+
+            this.CreateMap<BrandServiceModel, BrandViewModel>();
 
             this.CreateMap<GlassesType, GlassesTypeServiceModel>();
         }

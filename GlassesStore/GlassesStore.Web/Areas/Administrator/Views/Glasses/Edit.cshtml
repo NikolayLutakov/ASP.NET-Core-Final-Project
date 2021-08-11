@@ -2,9 +2,11 @@
 @{
     ViewData["Title"] = "Glasses Edit";
 }
+<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+    <h2 class="text-center">Edit Glasses</h2>
+    <partial name="_GlassesFormPartial" model="@Model" />
+</div>
 
-<partial name="_GlassesFormPartial" model="@Model" />
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }

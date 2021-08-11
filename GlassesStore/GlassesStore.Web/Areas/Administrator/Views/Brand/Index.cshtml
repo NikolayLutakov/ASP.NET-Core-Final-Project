@@ -1,0 +1,8 @@
+﻿@model List<BrandViewModel>
+@{
+    ViewData["Title"] = "Brand Index";
+}
+
+<a class="nav-link text-dark" asp-area="Administrator" asp-controller="Brand" asp-action="Add">Add Brand</a>
+
+<partial name="_BrandsListPartial" model="@Model"/>
