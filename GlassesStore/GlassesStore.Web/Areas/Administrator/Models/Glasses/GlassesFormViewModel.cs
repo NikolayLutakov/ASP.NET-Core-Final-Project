@@ -12,6 +12,7 @@ namespace GlassesStore.Web.Areas.Administrator.Models.Glasses
 
         [Required]
         [MaxLength(NameMaxLength)]
+        [Display(Name = "Model")]
         public string ModelName { get; set; }
 
         [Required]

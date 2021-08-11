@@ -41,10 +41,54 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
                 return View(PopulateCollections(model));
             }
 
+            if (!glassesService.Add(
+                model.ModelName,
+                model.Description,
+                model.Price,
+                model.ImageUrl,
+                model.BrandId,
+                model.TypeId
+                ))
+            {
+                return BadRequest();
+            }
 
             return RedirectToAction("Index", "Glasses");
         }
 
+        public IActionResult Edit(int id)
+        {
+            var result = PopulateCollections(id, new GlassesFormViewModel());
+
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+            return View(result);
+        }
+
+        private GlassesFormViewModel PopulateCollections(int id, GlassesFormViewModel model)
+        {
+            var collections = mapper.Map<GlassesFormViewModel>(glassesService.PopulateBookFormModel(id));
+
+            if (collections == null)
+            {
+                return null;
+            }
+
+            model.Id = collections.Id;
+            model.Description = collections.Description;
+            model.Price = collections.Price;
+            model.ImageUrl = collections.ImageUrl;
+            model.ModelName = collections.ModelName;
+            model.TypeId = collections.TypeId;
+            model.BrandId = collections.BrandId;
+            model.TypeList = collections.TypeList;
+            model.BrandList = collections.BrandList;
+
+            return model;
+        }
         private GlassesFormViewModel PopulateCollections(GlassesFormViewModel model)
         {
             var collections = mapper.Map<GlassesFormViewModel>(glassesService.PopulateBookFormModel());

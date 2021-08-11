@@ -6,12 +6,13 @@ using GlassesStore.Services.Glasses.Models;
 using GlassesStore.Services.GlassesType;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GlassesStore.Services.Glasses
 {
+    using GlassesStore.Models;
+    using Microsoft.Data.SqlClient;
+    using System.Linq;
+
     public class GlassesService : IGlassesService
     {
         private readonly GlassesDbContext data;
@@ -21,7 +22,7 @@ namespace GlassesStore.Services.Glasses
         public GlassesService(
             GlassesDbContext data,
             IMapper mapper,
-            IBrandService brandService, 
+            IBrandService brandService,
             IGlassesTypeService glassesTypeService)
         {
             this.data = data;
@@ -30,9 +31,43 @@ namespace GlassesStore.Services.Glasses
             this.glassesTypeService = glassesTypeService;
         }
 
-        public bool Add()
+        public bool Add(
+            string modelName,
+            string description,
+            decimal price,
+            string imageUrl,
+            int brandId,
+            int typeId)
         {
-            throw new NotImplementedException();
+            var brand = data.Brands.Find(brandId);
+            var type = data.GlassesTypes.Find(typeId);
+
+            if (brand == null || type == null)
+            {
+                return false;
+            }
+
+            var glasses = new Glasses
+            {
+                Model = modelName,
+                Description = description,
+                Price = price,
+                ImageUrl = imageUrl,
+                Brand = brand,
+                Type = type
+            };
+
+            try
+            {
+                data.Glasses.Add(glasses);
+                data.SaveChanges();
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public IEnumerable<GlassesServiceModel> All()
@@ -46,8 +81,18 @@ namespace GlassesStore.Services.Glasses
             };
 
         public GlassesFormServiceModel PopulateBookFormModel(int id)
-        {
-            throw new NotImplementedException();
-        }
+             => data.Glasses.Where(x => x.Id == id).Select(x => new GlassesFormServiceModel
+             {
+                 Id = x.Id,
+                 ModelName = x.Model,
+                 Description = x.Description,
+                 Price = x.Price,
+                 ImageUrl = x.ImageUrl,
+                 BrandId = x.BrandId,
+                 TypeId = x.TypeId,
+                 BrandList = brandService.All().ToList(),
+                 TypeList = glassesTypeService.All().ToList()
+             })
+             .FirstOrDefault();
     }
 }

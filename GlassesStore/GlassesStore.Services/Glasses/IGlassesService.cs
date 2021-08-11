@@ -13,6 +13,14 @@ namespace GlassesStore.Services.Glasses
 
         GlassesFormServiceModel PopulateBookFormModel(int id);
 
+        bool Add(
+            string modelName,
+            string description,
+            decimal price,
+            string imageUrl,
+            int brandId,
+            int typeId);
+
         IEnumerable<GlassesServiceModel> All();
     }
 }

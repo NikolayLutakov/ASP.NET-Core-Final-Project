@@ -5,7 +5,13 @@
     <ul class="list-group list-group-flush">
         @foreach (var glasses in Model)
         {
-            <li class="list-group-item">@glasses.ModelName, @glasses.Brand, @glasses.Rating </li>
+        <li class="list-group-item">
+            @glasses.ModelName,
+            @glasses.Brand,
+            @glasses.Rating
+            <a asp-controller="Glasses" asp-action="Edit" asp-route-id="@glasses.Id" class="btn btn-warning">Edit</a>
+            <a asp-controller="Glasses" asp-action="Delete" asp-route-id="@glasses.Id" class="btn btn-danger">Delete</a>
+        </li>
         }
     </ul>
 </div>
