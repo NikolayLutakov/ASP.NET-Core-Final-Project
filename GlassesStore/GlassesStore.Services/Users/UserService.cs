@@ -33,7 +33,7 @@ namespace GlassesStore.Services.Users
             {
                 Id = x.Id,
                 UserName = x.UserName,
-                Roles = userManager.GetRolesAsync(x).Result
+                Roles = userManager.GetRolesAsync(x).GetAwaiter().GetResult()
             })
             .ToList();
 

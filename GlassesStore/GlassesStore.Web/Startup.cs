@@ -1,5 +1,8 @@
 using GlassesStore.Data;
 using GlassesStore.Models;
+using GlassesStore.Services.Brand;
+using GlassesStore.Services.Glasses;
+using GlassesStore.Services.GlassesType;
 using GlassesStore.Services.Users;
 using GlassesStore.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using System.Globalization;
 
 namespace GlassesStore.Web
 {
@@ -54,13 +57,23 @@ namespace GlassesStore.Web
             });
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IGlassesService, GlassesService>();
+            services.AddTransient<IBrandService, BrandService>();
+            services.AddTransient<IGlassesTypeService, GlassesTypeService>();
 
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.PrepareDatabase();
 
+            var cultureInfo = new CultureInfo("en-US");
+            cultureInfo.NumberFormat.NumberGroupSeparator = ",";
+
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+            app.PrepareDatabase();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

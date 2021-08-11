@@ -25,6 +25,10 @@ namespace GlassesStore.Web.Infrastructure.Extensions
 
             SeedAdministrator(services);
 
+            SeedGlassesTypes(services);
+
+            SeedCardTypes(services);
+
             return app;
         }
 
@@ -67,6 +71,43 @@ namespace GlassesStore.Web.Infrastructure.Extensions
                 })
                 .GetAwaiter()
                 .GetResult();
+        }
+
+        private static void SeedGlassesTypes(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<GlassesDbContext>();
+
+            if (data.GlassesTypes.Any())
+            {
+                return;
+            }
+
+            data.GlassesTypes.AddRange(new[]
+            {
+                new GlassesType { Name = "Sunglasses"},
+                new GlassesType { Name = "Prescription glasses" },
+                new GlassesType { Name = "Lenses"}
+            });
+
+            data.SaveChanges();
+        }
+
+        private static void SeedCardTypes(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<GlassesDbContext>();
+
+            if (data.CardTypes.Any())
+            {
+                return;
+            }
+
+            data.CardTypes.AddRange(new[]
+            {
+                new CardType { TypeName = "Debit"},
+                new CardType { TypeName = "Credit" },
+            });
+
+            data.SaveChanges();
         }
     }
 }

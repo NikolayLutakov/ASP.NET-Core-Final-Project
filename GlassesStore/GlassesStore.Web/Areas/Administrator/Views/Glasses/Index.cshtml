@@ -1,0 +1,8 @@
+﻿@model List<GlassesViewModel>
+@{
+    ViewData["Title"] = "Glasses Index";
+}
+
+<a class="nav-link text-dark" asp-area="Administrator" asp-controller="Glasses" asp-action="Add">Add Glasses</a>
+
+<partial name="_GlassesListPartial" model="@Model" />

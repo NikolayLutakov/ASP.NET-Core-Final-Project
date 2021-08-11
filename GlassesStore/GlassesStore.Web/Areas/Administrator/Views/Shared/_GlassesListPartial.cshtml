@@ -1,0 +1,11 @@
+﻿@model List<GlassesViewModel>
+
+
+<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+    <ul class="list-group list-group-flush">
+        @foreach (var glasses in Model)
+        {
+            <li class="list-group-item">@glasses.ModelName, @glasses.Brand, @glasses.Rating </li>
+        }
+    </ul>
+</div>
