@@ -12,6 +12,7 @@ namespace GlassesStore.Services.Brand
 {
     using GlassesStore.Models;
     using Microsoft.Data.SqlClient;
+    using Microsoft.EntityFrameworkCore;
 
     public class BrandService : IBrandService
     {
@@ -80,5 +81,30 @@ namespace GlassesStore.Services.Brand
             => data.Brands.Where(x => x.Id == id)
             .ProjectTo<BrandServiceModel>(mapper.ConfigurationProvider)
             .FirstOrDefault();
+
+        public bool Delete(int id)
+        {
+            var brand = data.Brands
+                .Include(x => x.Glasses)
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+
+            if (brand == null || brand.Glasses.Count() > 0)
+            {
+                return false;
+            }
+
+            try
+            {
+                data.Brands.Remove(brand);
+                data.SaveChanges();
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

@@ -16,5 +16,7 @@ namespace GlassesStore.Services.Brand
         bool Add(string name, string description);
 
         bool Edit(int id, string name, string description);
+
+        bool Delete(int id);
     }
 }

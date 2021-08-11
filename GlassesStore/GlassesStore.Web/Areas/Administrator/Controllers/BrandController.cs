@@ -2,10 +2,7 @@
 using GlassesStore.Services.Brand;
 using GlassesStore.Web.Areas.Administrator.Models.Brand;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GlassesStore.Web.Areas.Administrator.Controllers
 {
@@ -61,6 +58,16 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
             }
 
             if (!brandService.Edit(model.Id, model.Name, model.Description))
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("Index", "Brand");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            if (!brandService.Delete(id))
             {
                 return BadRequest();
             }
