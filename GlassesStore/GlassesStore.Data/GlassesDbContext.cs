@@ -1,9 +1,8 @@
-﻿using GlassesStore.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-
-namespace GlassesStore.Data
+﻿namespace GlassesStore.Data
 {
+    using GlassesStore.Models;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
     public class GlassesDbContext : IdentityDbContext<User>
     {
         public GlassesDbContext(DbContextOptions<GlassesDbContext> options)
