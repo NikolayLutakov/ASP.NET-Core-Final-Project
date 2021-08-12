@@ -3,7 +3,7 @@
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <h2 class="text-center">Purchase confirm</h2>
         <form method="post">
-            <input type="hidden" asp-for="@Model.ProductToBuy.Id" value="@Model.ProductToBuy.Id" />
+            <input name="ProductId" type="hidden" asp-for="@Model.ProductToBuy.Id" value="@Model.ProductToBuy.Id" />
             <div class="card col-6 offset-3" style="width: 18rem;">
                 <img class="card-img-top" style="height: 15rem" src="@Model.ProductToBuy.ImageUrl" alt="Card image cap">
                 <div class="card-body">

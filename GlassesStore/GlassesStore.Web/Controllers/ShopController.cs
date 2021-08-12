@@ -10,6 +10,7 @@
     using GlassesStore.Services.Users;
     using GlassesStore.Web.Infrastructure.Extensions;
     using GlassesStore.Services.Card;
+    using GlassesStore.Services.Card.Models;
 
     [Authorize]
     public class ShopController : Controller
@@ -45,17 +46,39 @@
 
         public IActionResult Buy(int id)
         {
-            var userId = User.Id();
-
-            var product = glassesService.GetById(id);
-            var userCards = cardService.GetCardsForUser(userId);
-
             var model = new PurchaseViewModel()
             {
-                ProductToBuy = product,
-                UserCards = userCards
+                ProductToBuy = glassesService.GetById(id),
+                UserCards = cardService.GetCardsForUser(User.Id())
             };
 
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Buy(PurchaseViewModel model)
+        {
+            var userCardIds = cardService
+                .GetCardsForUser(User.Id())
+                .Select(x => x.Id)
+                .ToList();
+
+            if (!userCardIds.Contains(model.CardId))
+            {
+                return BadRequest();
+            }
+
+            if (!cardService.MakePurchase(model.CardId, model.ProductId))
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("Index", "Shop");
+        }
+
+        public IActionResult MyPurchases()
+        {
+            var model = cardService.MyPurchases(User.Id());
 
             return View(model);
         }

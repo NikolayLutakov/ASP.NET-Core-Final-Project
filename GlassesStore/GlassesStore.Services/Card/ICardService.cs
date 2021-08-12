@@ -10,5 +10,9 @@ namespace GlassesStore.Services.Card
     public interface ICardService
     {
         IEnumerable<CardServiceModel> GetCardsForUser(string id);
+
+        bool MakePurchase(int cardId, int productId);
+
+        IEnumerable<PurchaseServiceModel> MyPurchases(string id);
     }
 }
