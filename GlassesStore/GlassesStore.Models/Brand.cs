@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using static GlassesStore.Models.Common.Constants;
-
-namespace GlassesStore.Models
+﻿namespace GlassesStore.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using static GlassesStore.Models.Common.Constants;
     public class Brand
     {
         public int Id { get; set; }
@@ -13,7 +12,7 @@ namespace GlassesStore.Models
         public string Name { get; set; }
 
         [Required]
-        [MaxLength (NameMaxLength)]
+        [MaxLength (DescriptionMaxLength)]
         public string Description { get; set; }
 
         public IEnumerable<Glasses> Glasses { get; set; }

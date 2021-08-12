@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
-
-namespace GlassesStore.Web.Infrastructure.Extensions
+﻿namespace GlassesStore.Web.Infrastructure.Extensions
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Routing;
     public static class EndpointRouteExtensions
     {
         public static void MapDefaultAreaRoute(this IEndpointRouteBuilder endpoints)

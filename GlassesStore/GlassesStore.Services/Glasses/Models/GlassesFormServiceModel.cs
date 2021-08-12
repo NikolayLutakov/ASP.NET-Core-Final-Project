@@ -1,9 +1,9 @@
-﻿using GlassesStore.Services.Brand.Models;
-using GlassesStore.Services.GlassesType.Models;
-using System.Collections.Generic;
-
-namespace GlassesStore.Services.Glasses.Models
+﻿namespace GlassesStore.Services.Glasses.Models
 {
+    using System.Collections.Generic;
+    using GlassesStore.Services.Brand.Models;
+    using GlassesStore.Services.GlassesType.Models;
+
     public class GlassesFormServiceModel
     {
         public int Id { get; set; }

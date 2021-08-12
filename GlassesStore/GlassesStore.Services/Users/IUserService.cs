@@ -1,12 +1,8 @@
-﻿using GlassesStore.Services.Users.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Services.Users
+﻿namespace GlassesStore.Services.Users
 {
+    using System.Collections.Generic;
+    using GlassesStore.Models;
+    using GlassesStore.Services.Users.Models;
     public interface IUserService
     {
         IEnumerable<UserServiceModel> All();
@@ -15,6 +11,6 @@ namespace GlassesStore.Services.Users
 
         bool RevokeAdmin(string id);
 
-        public string IdByUser(string id);
+
     }
 }

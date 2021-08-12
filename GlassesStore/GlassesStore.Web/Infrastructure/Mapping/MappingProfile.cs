@@ -1,20 +1,19 @@
-﻿using AutoMapper;
-using GlassesStore.Models;
-using GlassesStore.Services.Brand.Models;
-using GlassesStore.Services.Glasses.Models;
-using GlassesStore.Services.GlassesType.Models;
-using GlassesStore.Services.Users.Models;
-using GlassesStore.Web.Areas.Administrator.Models.Brand;
-using GlassesStore.Web.Areas.Administrator.Models.Glasses;
-using GlassesStore.Web.Areas.Administrator.Models.User;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Web.Infrastructure.Mapping
+﻿namespace GlassesStore.Web.Infrastructure.Mapping
 {
+    using System.Linq;
+    using Microsoft.AspNetCore.Identity;
+    using AutoMapper;
+    using GlassesStore.Models;
+    using GlassesStore.Services.Brand.Models;
+    using GlassesStore.Services.Glasses.Models;
+    using GlassesStore.Services.GlassesType.Models;
+    using GlassesStore.Services.Users.Models;
+    using GlassesStore.Web.Areas.Administrator.Models.Brand;
+    using GlassesStore.Web.Areas.Administrator.Models.Glasses;
+    using GlassesStore.Web.Areas.Administrator.Models.User;
+    using GlassesStore.Web.Models.Shop;
+    using GlassesStore.Services.Card.Models;
+
     public class MappingProfile : Profile
     {
 
@@ -34,11 +33,15 @@ namespace GlassesStore.Web.Infrastructure.Mapping
             this.CreateMap<Glasses, GlassesServiceModel>()
                 .ForMember(g => g.ModelName, cfg => cfg.MapFrom(g => g.Model))
                 .ForMember(g => g.Brand, cfg => cfg.MapFrom(g => g.Brand.Name))
-                .ForMember(g => g.Rating, cfg => cfg.MapFrom(g => 1.0m));//(decimal)(g.GlassesRatings.Select(x => x.Rating).Sum() + 1 / g.GlassesRatings.Count() + 1)));
+                .ForMember(g => g.Rating, cfg => cfg.MapFrom(g => (decimal)((g.GlassesRatings.Select(x => x.Rating).Sum() + 1) / (g.GlassesRatings.Count() + 1))));
 
             this.CreateMap<GlassesServiceModel, GlassesViewModel>();
 
             this.CreateMap<GlassesFormServiceModel, GlassesFormViewModel>();
+
+            this.CreateMap<GlassesServiceModel, GlassesDetailsViewModel>();
+
+            this.CreateMap<Card, CardServiceModel>();
 
             this.CreateMap<Brand, BrandServiceModel>()
                 .ForMember(g => g.HasGlasses, 
@@ -50,6 +53,8 @@ namespace GlassesStore.Web.Infrastructure.Mapping
             this.CreateMap<BrandServiceModel, BrandFormViewModel>();
 
             this.CreateMap<GlassesType, GlassesTypeServiceModel>();
+
+            this.CreateMap<GlassesListingServiceModel, GlassesListingViewModel>();
         }
     }
 }

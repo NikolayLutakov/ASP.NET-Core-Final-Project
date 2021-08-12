@@ -1,15 +1,14 @@
-﻿using GlassesStore.Services.Glasses.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Services.Glasses
+﻿namespace GlassesStore.Services.Glasses
 {
+    using System.Collections.Generic;
+    using GlassesStore.Services.Glasses.Models;
     public interface IGlassesService
     {
+        GlassesServiceModel GetById(int id);
+
         IEnumerable<GlassesServiceModel> All();
+
+        GlassesListingServiceModel Search(string searchTerm, int currentPage, int glassesPerPage);
 
         GlassesFormServiceModel PopulateBookFormModel();
 

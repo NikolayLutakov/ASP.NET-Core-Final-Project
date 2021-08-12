@@ -1,12 +1,7 @@
-﻿using GlassesStore.Services.GlassesType.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Services.GlassesType
+﻿namespace GlassesStore.Services.GlassesType
 {
+    using System.Collections.Generic;
+    using GlassesStore.Services.GlassesType.Models;
     public interface IGlassesTypeService
     {
         IEnumerable<GlassesTypeServiceModel> All();

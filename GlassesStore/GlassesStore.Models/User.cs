@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
-
-namespace GlassesStore.Models
+﻿namespace GlassesStore.Models
 {
+    using System.Collections.Generic;
+    using Microsoft.AspNetCore.Identity;
     public class User : IdentityUser
     {
 

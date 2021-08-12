@@ -1,17 +1,15 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using GlassesStore.Data;
-using GlassesStore.Services.Brand;
-using GlassesStore.Services.Glasses.Models;
-using GlassesStore.Services.GlassesType;
-using System;
-using System.Collections.Generic;
-
-namespace GlassesStore.Services.Glasses
+﻿namespace GlassesStore.Services.Glasses
 {
-    using GlassesStore.Models;
-    using Microsoft.Data.SqlClient;
+    using System.Collections.Generic;
     using System.Linq;
+    using Microsoft.EntityFrameworkCore;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+    using GlassesStore.Data;
+    using GlassesStore.Services.Brand;
+    using GlassesStore.Services.Glasses.Models;
+    using GlassesStore.Services.GlassesType;
+    using GlassesStore.Models;
 
     public class GlassesService : IGlassesService
     {
@@ -62,7 +60,7 @@ namespace GlassesStore.Services.Glasses
                 data.Glasses.Add(glasses);
                 data.SaveChanges();
             }
-            catch (SqlException)
+            catch (DbUpdateException)
             {
                 return false;
             }
@@ -100,7 +98,7 @@ namespace GlassesStore.Services.Glasses
                 data.Update(glasses);
                 data.SaveChanges();
             }
-            catch (SqlException)
+            catch (DbUpdateException)
             {
                 return false;
             }
@@ -122,7 +120,7 @@ namespace GlassesStore.Services.Glasses
                 data.Remove(glassesToDelete);
                 data.SaveChanges();
             }
-            catch (SqlException)
+            catch (DbUpdateException)
             {
                 return false;
             }
@@ -154,5 +152,32 @@ namespace GlassesStore.Services.Glasses
                  TypeList = glassesTypeService.All().ToList()
              })
              .FirstOrDefault();
+
+        public GlassesListingServiceModel Search(string searchTerm, int currentPage, int glassesPerPage)
+        {
+            IQueryable<Glasses> glassesQuery = data.Glasses.OrderBy(x => x.Brand.Name).ThenBy(x => x.Model);
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                glassesQuery = glassesQuery.Where(x => (x.Brand.Name.ToLower() + " " + x.Model.ToLower() + " " + x.Description.ToLower()).Contains(searchTerm.ToLower()));          
+            }
+
+            var totalGlasses = glassesQuery.Count();
+
+            var glasses = glassesQuery.Skip((currentPage - 1) * glassesPerPage)
+                .Take(glassesPerPage).ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider);
+
+            return new GlassesListingServiceModel
+            {
+                TotalGlasses = totalGlasses,
+                Glasses = glasses,
+                CurrentPage = currentPage
+            };
+        }
+
+        public GlassesServiceModel GetById(int id)
+            => data.Glasses.Where(x => x.Id == id)
+                .ProjectTo<GlassesServiceModel>(mapper.ConfigurationProvider)
+                .FirstOrDefault();
     }
 }

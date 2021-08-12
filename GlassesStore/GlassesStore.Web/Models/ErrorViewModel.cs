@@ -1,7 +1,6 @@
-using System;
-
 namespace GlassesStore.Web.Models
 {
+    using System;
     public class ErrorViewModel
     {
         public string RequestId { get; set; }

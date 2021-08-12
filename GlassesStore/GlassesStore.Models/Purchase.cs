@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Models
+﻿namespace GlassesStore.Models
 {
+    using System;
     public class Purchase
     {
         public int Id { get; set; }

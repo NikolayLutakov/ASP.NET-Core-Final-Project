@@ -1,12 +1,8 @@
-﻿using GlassesStore.Services.Brand.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Services.Brand
+﻿namespace GlassesStore.Services.Brand
 {
+    using System.Collections.Generic;
+    using GlassesStore.Services.Brand.Models;
+
     public interface IBrandService
     {
         IEnumerable<BrandServiceModel> All();

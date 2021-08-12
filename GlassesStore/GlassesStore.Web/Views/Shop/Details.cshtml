@@ -1,0 +1,43 @@
+﻿@model GlassesDetailsViewModel
+
+<div class="col-sm-12 col-md-12 col-lg-12">
+    <!-- product -->
+    <div class="product-content product-wrap clearfix product-deatil">
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <div class="product-image">
+                    <div class="item active">
+                        <img src="@Model.ImageUrl" class="img-thumbnail" alt="" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
+                <h2 class="name">
+                    @Model.Brand
+                    <small>@Model.ModelName</small>
+                    <h5>Rating: @Model.Rating / 5.00</h5>
+                </h2>
+                <hr />
+                <h3 class="price-container">
+                    $@Model.Price
+                </h3>
+                <div class="certified">
+                </div>
+                <hr />
+                <div class="description description-tabs">
+                    @Model.Description
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <a asp-controller="Shop" asp-action="Buy" asp-route-id="@Model.Id" class="btn btn-success btn-lg">Buy ($@Model.Price)</a>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end product -->
+</div>

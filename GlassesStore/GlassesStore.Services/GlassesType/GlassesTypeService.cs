@@ -1,15 +1,12 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using GlassesStore.Data;
-using GlassesStore.Services.GlassesType.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Services.GlassesType
+﻿namespace GlassesStore.Services.GlassesType
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+    using GlassesStore.Data;
+    using GlassesStore.Services.GlassesType.Models;
+
     public class GlassesTypeService : IGlassesTypeService
     {
         private readonly GlassesDbContext data;

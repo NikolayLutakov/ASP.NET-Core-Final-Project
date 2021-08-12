@@ -1,13 +1,14 @@
-﻿using GlassesStore.Data;
-using GlassesStore.Models;
-using GlassesStore.Services.Users.Models;
-using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
-using System.Linq;
-using static GlassesStore.Models.Common.Constants.AdministratorConstants;
-
-namespace GlassesStore.Services.Users
+﻿namespace GlassesStore.Services.Users
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.AspNetCore.Identity;
+    using GlassesStore.Data;
+    using GlassesStore.Models;
+    using GlassesStore.Services.Users.Models;
+    using static GlassesStore.Models.Common.Constants.AdministratorConstants;
+    using System.Security.Claims;
+
     public class UserService : IUserService
     {
         private readonly GlassesDbContext data;
@@ -19,13 +20,6 @@ namespace GlassesStore.Services.Users
             this.userManager = userManager;
         }
 
-        public string IdByUser(string id)
-            => this.data
-                .Users
-                .Where(d => d.Id == id)
-                .Select(d => d.Id)
-                .FirstOrDefault();
-
         public IEnumerable<UserServiceModel> All()
         {
 
@@ -36,8 +30,6 @@ namespace GlassesStore.Services.Users
                 Roles = userManager.GetRolesAsync(x).GetAwaiter().GetResult()
             })
             .ToList();
-
-
 
             return users;
         }

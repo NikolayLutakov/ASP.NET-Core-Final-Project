@@ -1,15 +1,10 @@
-﻿using GlassesStore.Web.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using static GlassesStore.Models.Common.Constants.AdministratorConstants;
-
-namespace GlassesStore.Controllers
+﻿namespace GlassesStore.Controllers
 {
+    using System.Diagnostics;
+    using GlassesStore.Web.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using static GlassesStore.Models.Common.Constants.AdministratorConstants;
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -26,11 +21,6 @@ namespace GlassesStore.Controllers
                 return RedirectToAction("Index", "Home", new { area = AdministratorRoleName });
             }
 
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
 

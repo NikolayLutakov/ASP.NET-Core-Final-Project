@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Models.Common
+﻿namespace GlassesStore.Models.Common
 {
     public class Constants
     {
         public const int NameMinLength = 1;
         public const int NameMaxLength = 25;
         public const int DescriptionMinLength = 10;
-        public const int DescriptionMaxLength = 250;
+        public const int DescriptionMaxLength = 300;
 
         public class Card
         {
@@ -37,6 +31,10 @@ namespace GlassesStore.Models.Common
 
             public const string AdministratorUsername = "administrator@admin.com";
             public const string AdministratorPassword = "123456";
+        }
+        public class Paging
+        {
+            public const int GlassesPerPage = 6;
         }
     }
 }

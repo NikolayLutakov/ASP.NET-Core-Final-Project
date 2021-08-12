@@ -1,6 +1,11 @@
-﻿namespace GlassesStore.Services.Glasses.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace GlassesStore.Web.Models.Shop
 {
-    public class GlassesServiceModel
+    public class GlassesDetailsViewModel
     {
         public int Id { get; set; }
         public string ModelName { get; set; }

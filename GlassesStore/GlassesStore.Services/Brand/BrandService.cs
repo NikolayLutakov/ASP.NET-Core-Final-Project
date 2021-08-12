@@ -1,15 +1,11 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using GlassesStore.Data;
-using GlassesStore.Services.Brand.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Services.Brand
+﻿namespace GlassesStore.Services.Brand
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
+    using GlassesStore.Data;
+    using GlassesStore.Services.Brand.Models;
     using GlassesStore.Models;
     using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;
@@ -37,7 +33,7 @@ namespace GlassesStore.Services.Brand
                 data.Add(brand);
                 data.SaveChanges();
             }
-            catch (SqlException)
+            catch (DbUpdateException)
             {
                 return false;
             }
@@ -63,7 +59,7 @@ namespace GlassesStore.Services.Brand
                 data.Update(brand);
                 data.SaveChanges();
             }
-            catch (SqlException)
+            catch (DbUpdateException)
             {
                 return false;
             }
@@ -99,7 +95,7 @@ namespace GlassesStore.Services.Brand
                 data.Brands.Remove(brand);
                 data.SaveChanges();
             }
-            catch (SqlException)
+            catch (DbUpdateException)
             {
                 return false;
             }

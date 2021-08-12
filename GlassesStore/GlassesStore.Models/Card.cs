@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using static GlassesStore.Models.Common.Constants.Card;
-
-namespace GlassesStore.Models
+﻿namespace GlassesStore.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using static GlassesStore.Models.Common.Constants.Card;
     public class Card
     {
         public int Id { get; set; }

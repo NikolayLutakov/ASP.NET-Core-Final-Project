@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using static GlassesStore.Models.Common.Constants.Comment;
-
-namespace GlassesStore.Models
+﻿namespace GlassesStore.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using static GlassesStore.Models.Common.Constants.Comment;
     public class Comment
     {
         public int Id { get; set; }
