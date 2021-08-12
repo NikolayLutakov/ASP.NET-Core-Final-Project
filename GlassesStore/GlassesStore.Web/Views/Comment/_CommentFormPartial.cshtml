@@ -1,6 +1,7 @@
 ﻿@model CommentFormViewModel
 
 <form method="post">
+    <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
     <input type="hidden" asp-for="@Model.UserId" value="@Model.UserId" />
     <input type="hidden" asp-for="@Model.GlassesId" value="@Model.GlassesId" />
     <div class="form-group">

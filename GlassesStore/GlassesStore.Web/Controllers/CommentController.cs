@@ -40,7 +40,44 @@
                 return BadRequest();
             }
 
-            return RedirectToAction("Details", "Shop", new { id = model.Id });
+            return RedirectToAction("Details", "Shop", new { id = model.GlassesId });
+        }
+
+       
+        public IActionResult Edit(int commentId)
+        {
+            var comment = commentService.GetById(commentId);
+
+            if (comment == null)
+            {
+                return BadRequest();
+            }
+
+            var model = new CommentFormViewModel
+            {
+                UserId = comment.UserId,
+                GlassesId = comment.GlassesId,
+                Content = comment.Content,
+                Id = comment.Id
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CommentFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (!commentService.Edit(model.Id, model.UserId, model.GlassesId, model.Content))
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("Details", "Shop", new { id = model.GlassesId });
         }
 
         public IActionResult Delete(int commentId, int productId)

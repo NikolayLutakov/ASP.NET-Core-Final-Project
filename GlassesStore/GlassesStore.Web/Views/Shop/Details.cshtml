@@ -74,7 +74,7 @@
                                         @if (comment.UserId == User.Id())
                                         {
                                             <div class="action">
-                                                <a type="button" class="btn btn-primary btn-xs" title="Edit">
+                                                <a type="button" class="btn btn-primary btn-xs" title="Edit" asp-controller="Comment" asp-action="Edit" asp-route-commentId="@comment.Id" asp-route-productId="@Model.Id">
                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                 </a>
                                                 <a type="button" class="btn btn-danger btn-xs" title="Delete" asp-controller="Comment" asp-action="Delete" asp-route-commentId="@comment.Id" asp-route-productId="@Model.Id">

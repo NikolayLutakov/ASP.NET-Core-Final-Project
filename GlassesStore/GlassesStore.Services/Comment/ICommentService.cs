@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GlassesStore.Services.Comment.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,19 @@ namespace GlassesStore.Services.Comment
 {
     public interface ICommentService
     {
-        bool Add(string userId, int productId, string content);
+        CommentServiceModel GetById(int id);
+
+        bool Add(
+            string userId, 
+            int productId, 
+            string content);
 
         bool Delete(int commentId, string userId);
+
+        public bool Edit(
+                int commentId,
+                string userId,
+                int productId,
+                string content);
     }
 }
