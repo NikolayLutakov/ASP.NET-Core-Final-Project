@@ -34,5 +34,27 @@
 
             return true;
         }
+
+        public bool Delete(int commentId, string userId)
+        {
+            var commentToDelete = data.Comments.Find(commentId);
+
+            if (commentToDelete == null || commentToDelete.UserId != userId )
+            {
+                return false;
+            }
+
+            try
+            {
+                data.Comments.Remove(commentToDelete);
+                data.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

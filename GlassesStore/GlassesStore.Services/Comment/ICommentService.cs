@@ -9,5 +9,7 @@ namespace GlassesStore.Services.Comment
     public interface ICommentService
     {
         bool Add(string userId, int productId, string content);
+
+        bool Delete(int commentId, string userId);
     }
 }

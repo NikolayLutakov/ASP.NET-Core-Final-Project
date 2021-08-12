@@ -95,7 +95,7 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
 
         private GlassesFormViewModel PopulateCollections(int id, GlassesFormViewModel model)
         {
-            var collections = mapper.Map<GlassesFormViewModel>(glassesService.PopulateBookFormModel(id));
+            var collections = mapper.Map<GlassesFormViewModel>(glassesService.PopulateGlassesFormModel(id));
 
             if (collections == null)
             {
@@ -127,7 +127,7 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
 
         private GlassesFormViewModel PopulateCollections(GlassesFormViewModel model)
         {
-            var collections = mapper.Map<GlassesFormViewModel>(glassesService.PopulateBookFormModel());
+            var collections = mapper.Map<GlassesFormViewModel>(glassesService.PopulateGlassesFormModel());
 
             model.TypeList = collections.TypeList;
             model.BrandList = collections.BrandList;

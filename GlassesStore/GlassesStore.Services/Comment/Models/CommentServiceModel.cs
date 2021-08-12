@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GlassesStore.Services.Users.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,8 @@ namespace GlassesStore.Services.Comment.Models
         public string CreatedOn { get; set; }
 
         public string UserId { get; set; }
+
+        public string User { get; set; }
 
         public int GlassesId { get; set; }
 

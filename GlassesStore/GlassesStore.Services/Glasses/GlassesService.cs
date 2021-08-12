@@ -144,14 +144,14 @@
         public IEnumerable<GlassesServiceModel> All()
             => data.Glasses.ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider);
 
-        public GlassesFormServiceModel PopulateBookFormModel()
+        public GlassesFormServiceModel PopulateGlassesFormModel()
             => new GlassesFormServiceModel
             {
                 BrandList = brandService.All(),
                 TypeList = glassesTypeService.All()
             };
 
-        public GlassesFormServiceModel PopulateBookFormModel(int id)
+        public GlassesFormServiceModel PopulateGlassesFormModel(int id)
              => data.Glasses.Where(x => x.Id == id).Select(x => new GlassesFormServiceModel
              {
                  Id = x.Id,

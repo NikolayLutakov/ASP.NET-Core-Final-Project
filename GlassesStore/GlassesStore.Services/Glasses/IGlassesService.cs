@@ -10,9 +10,9 @@
 
         GlassesListingServiceModel Search(string searchTerm, int currentPage, int glassesPerPage);
 
-        GlassesFormServiceModel PopulateBookFormModel();
+        GlassesFormServiceModel PopulateGlassesFormModel();
 
-        GlassesFormServiceModel PopulateBookFormModel(int id);
+        GlassesFormServiceModel PopulateGlassesFormModel(int id);
 
         bool Add(
             string modelName,

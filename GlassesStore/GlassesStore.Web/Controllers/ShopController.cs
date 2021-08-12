@@ -41,6 +41,11 @@
         {
             var glasses = mapper.Map<GlassesDetailsViewModel>(glassesService.GetById(id));
 
+            if (glasses == null)
+            {
+                return BadRequest();
+            }
+
             return View(glasses);
         }
 

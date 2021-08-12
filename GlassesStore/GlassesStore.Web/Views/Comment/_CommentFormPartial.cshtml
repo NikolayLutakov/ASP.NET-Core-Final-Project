@@ -5,7 +5,7 @@
     <input type="hidden" asp-for="@Model.GlassesId" value="@Model.GlassesId" />
     <div class="form-group">
         <label asp-for="@Model.Content"></label>
-        <input asp-for="@Model.Content" class="form-control" placeholder="Enter brand..">
+        <textarea asp-for="@Model.Content" class="form-control" placeholder="Enter text.."></textarea>
         <span asp-validation-for="@Model.Content" class="small text-danger"></span>
     </div>
     <input class="btn btn-primary mt-3" type="submit" value="Save" />

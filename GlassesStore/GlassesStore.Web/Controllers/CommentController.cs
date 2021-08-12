@@ -40,7 +40,17 @@
                 return BadRequest();
             }
 
-            return RedirectToAction("Details", "Shop", new { model.Id });
+            return RedirectToAction("Details", "Shop", new { id = model.Id });
+        }
+
+        public IActionResult Delete(int commentId, int productId)
+        {
+            if (!commentService.Delete(commentId, User.Id()))
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("Details", "Shop", new { id = productId });
         }
     }
 }
