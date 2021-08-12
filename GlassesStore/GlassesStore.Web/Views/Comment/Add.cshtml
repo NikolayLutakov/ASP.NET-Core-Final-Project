@@ -1,0 +1,14 @@
+﻿@model CommentFormViewModel
+
+@{
+    ViewData["Title"] = "Add Comment";
+}
+
+<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+    <h2 class="text-center">Add Comment</h2>
+    <partial name="_CommentFormPartial" model="@Model" />
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

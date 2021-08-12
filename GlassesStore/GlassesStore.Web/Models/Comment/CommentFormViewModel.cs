@@ -1,24 +1,19 @@
-﻿namespace GlassesStore.Models
+﻿namespace GlassesStore.Web.Models.Comment
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
     using static GlassesStore.Models.Common.Constants.Comment;
-    public class Comment
+
+    public class CommentFormViewModel
     {
         public int Id { get; set; }
 
         [Required]
+        [MinLength(ContentMinLength)]
         [MaxLength(ContentMaxLength)]
         public string Content { get; set; }
 
-        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
-
         public string UserId { get; set; }
 
-        public User User { get; set; }
-
         public int GlassesId { get; set; }
-
-        public Glasses Glasses { get; set; }
     }
 }

@@ -13,6 +13,7 @@
     using GlassesStore.Web.Areas.Administrator.Models.User;
     using GlassesStore.Web.Models.Shop;
     using GlassesStore.Services.Card.Models;
+    using GlassesStore.Services.Comment.Models;
 
     public class MappingProfile : Profile
     {
@@ -33,7 +34,16 @@
             this.CreateMap<Glasses, GlassesServiceModel>()
                 .ForMember(g => g.ModelName, cfg => cfg.MapFrom(g => g.Model))
                 .ForMember(g => g.Brand, cfg => cfg.MapFrom(g => g.Brand.Name))
-                .ForMember(g => g.Rating, cfg => cfg.MapFrom(g => (decimal)((g.GlassesRatings.Select(x => x.Rating).Sum() + 1) / (g.GlassesRatings.Count() + 1))));
+                .ForMember(g => g.Rating, cfg => cfg.MapFrom(g => (decimal)((g.GlassesRatings.Select(x => x.Rating).Sum() + 1) / (g.GlassesRatings.Count() + 1))))
+                .ForMember(g => g.PurchasesCount, cfg => cfg.MapFrom(g => g.Purchases.Count()))
+                .ForMember(g => g.Comments, cfg => cfg.MapFrom(g => g.Comments.Select(x => new CommentServiceModel 
+                {
+                    Id = x.Id,
+                    Content = x.Content,
+                    CreatedOn = x.CreatedOn.ToString("d"),
+                    GlassesId = x.GlassesId,
+                    UserId = x.UserId
+                })));
 
             this.CreateMap<GlassesServiceModel, GlassesViewModel>();
 

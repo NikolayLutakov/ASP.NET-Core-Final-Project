@@ -15,5 +15,7 @@ namespace GlassesStore.Web.Areas.Administrator.Models.Glasses
         public string Brand { get; set; }
         public string Type { get; set; }
         public decimal Rating { get; set; }
+
+        public int PurchasesCount { get; set; }
     }
 }

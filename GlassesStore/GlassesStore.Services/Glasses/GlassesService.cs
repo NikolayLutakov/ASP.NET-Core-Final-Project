@@ -110,7 +110,20 @@
         {
             var glassesToDelete = data.Glasses.Find(id);
 
-            if (glassesToDelete == null)
+            var commentsToDelete = data.Comments
+                .Where(x => x.GlassesId == glassesToDelete.Id)
+                .ToList();
+
+            if (glassesToDelete == null || glassesToDelete.Purchases.Count() > 0)
+            {
+                return false;
+            }
+            try
+            {
+                data.RemoveRange(commentsToDelete);
+                data.SaveChanges();
+            }
+            catch (DbUpdateException)
             {
                 return false;
             }
@@ -120,7 +133,7 @@
                 data.Remove(glassesToDelete);
                 data.SaveChanges();
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException e)
             {
                 return false;
             }

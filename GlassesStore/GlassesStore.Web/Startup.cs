@@ -17,6 +17,7 @@ namespace GlassesStore.Web
     using GlassesStore.Services.Users;
     using GlassesStore.Web.Infrastructure.Extensions;
     using GlassesStore.Services.Card;
+    using GlassesStore.Services.Comment;
 
     public class Startup
     {
@@ -59,7 +60,8 @@ namespace GlassesStore.Web
             services.AddTransient<IGlassesService, GlassesService>();
             services.AddTransient<IBrandService, BrandService>();
             services.AddTransient<IGlassesTypeService, GlassesTypeService>();
-            services.AddTransient<ICardService, CardService>();
+            services.AddTransient<ICardService, CardService>(); 
+            services.AddTransient<ICommentService, CommentService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
