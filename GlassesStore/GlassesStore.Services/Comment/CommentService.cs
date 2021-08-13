@@ -5,19 +5,23 @@
     using GlassesStore.Data;
     using GlassesStore.Models;
     using GlassesStore.Services.Comment.Models;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
+    using static GlassesStore.Models.Common.Constants.AdministratorConstants;
 
     public class CommentService : ICommentService
     {
         private readonly GlassesDbContext data;
         private readonly IMapper mapper;
+        private readonly UserManager<User> userManager;
 
-        public CommentService(GlassesDbContext data, IMapper mapper)
+        public CommentService(GlassesDbContext data, IMapper mapper, UserManager<User> userManager)
         {
             this.data = data;
             this.mapper = mapper;
+            this.userManager = userManager;
         }
 
         public bool Add(
@@ -52,8 +56,9 @@
             string content)
         {
             var comment = data.Comments.Find(commentId);
+            var user = data.Users.Find(userId);
 
-            if (comment == null || comment.UserId != userId)
+            if (comment == null || (comment.UserId != userId && !userManager.IsInRoleAsync(user, AdministratorRoleName).GetAwaiter().GetResult()))
             {
                 return false;
             }
@@ -76,8 +81,9 @@
         public bool Delete(int commentId, string userId)
         {
             var commentToDelete = data.Comments.Find(commentId);
+            var user = data.Users.Find(userId);
 
-            if (commentToDelete == null || commentToDelete.UserId != userId )
+            if (commentToDelete == null || (commentToDelete.UserId != userId && !userManager.IsInRoleAsync(user, AdministratorRoleName).GetAwaiter().GetResult()))
             {
                 return false;
             }
