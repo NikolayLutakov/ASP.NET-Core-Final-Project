@@ -141,8 +141,25 @@
             return true;
         }
 
-        public IEnumerable<GlassesServiceModel> All()
-            => data.Glasses.ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider);
+        public GlassesListingServiceModel All(int currentPage, int glassesPerPage)
+        {
+            var glassesQuery = data.Glasses
+                 .OrderBy(x => x.Brand.Name)
+                 .ThenBy(x => x.Model);
+
+            var totalGlasses = glassesQuery.Count();
+
+            var glasses = glassesQuery.Skip((currentPage - 1) * glassesPerPage)
+                .Take(glassesPerPage).ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider);
+
+            return new GlassesListingServiceModel
+            {
+                TotalGlasses = totalGlasses,
+                Glasses = glasses,
+                CurrentPage = currentPage
+            };
+        }
+            
 
         public GlassesFormServiceModel PopulateGlassesFormModel()
             => new GlassesFormServiceModel
@@ -172,7 +189,9 @@
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                glassesQuery = glassesQuery.Where(x => (x.Brand.Name.ToLower() + " " + x.Model.ToLower() + " " + x.Description.ToLower()).Contains(searchTerm.ToLower()));          
+                glassesQuery = glassesQuery
+                    .Where(x => (x.Brand.Name.ToLower() + " " + x.Model.ToLower() + " " + x.Description.ToLower() + " " + x.Type.Name.ToLower())
+                    .Contains(searchTerm.ToLower()));          
             }
 
             var totalGlasses = glassesQuery.Count();

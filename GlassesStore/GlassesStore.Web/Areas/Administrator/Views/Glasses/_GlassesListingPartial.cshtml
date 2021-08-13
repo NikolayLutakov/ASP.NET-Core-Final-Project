@@ -1,0 +1,26 @@
+﻿@model IEnumerable<GlassesServiceModel>
+
+<div class="col-12 row">
+    @foreach (var glasses in Model)
+    {
+        <div class="card col-4" style="width: 18rem;">
+            <img class="card-img-top" style="height: 15rem" src="@glasses.ImageUrl" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@glasses.Brand</h5>
+                <p class="card-text">@glasses.ModelName</p>
+                <p class="card-text">@glasses.Description</p>
+                <p class="card-text">Price: @glasses.Price</p>
+                <p class="card-text">Type: @glasses.Type</p>
+                <p class="card-text">Rating: @glasses.Rating</p>
+                <p class="card-text">Comments count: @glasses.Comments.Count()</p>
+                <a asp-controller="Glasses" asp-action="Edit" asp-route-id="@glasses.Id" class="btn btn-primary">Edit</a>
+                @if (glasses.PurchasesCount == 0)
+                {
+                    <a asp-controller="Glasses" asp-action="Delete" asp-route-id="@glasses.Id" class="btn btn-danger">Delete</a>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+

@@ -33,6 +33,7 @@
 
             this.CreateMap<Glasses, GlassesServiceModel>()
                 .ForMember(g => g.ModelName, cfg => cfg.MapFrom(g => g.Model))
+                .ForMember(g => g.Type, cfg => cfg.MapFrom(g => g.Type.Name))
                 .ForMember(g => g.Brand, cfg => cfg.MapFrom(g => g.Brand.Name))
                 .ForMember(g => g.Rating, cfg => cfg.MapFrom(g => (decimal)((g.GlassesRatings.Select(x => x.Rating).Sum() + 1) / (g.GlassesRatings.Count() + 1))))
                 .ForMember(g => g.PurchasesCount, cfg => cfg.MapFrom(g => g.Purchases.Count()))
@@ -66,6 +67,8 @@
             this.CreateMap<GlassesType, GlassesTypeServiceModel>();
 
             this.CreateMap<GlassesListingServiceModel, GlassesListingViewModel>();
+
+            this.CreateMap<GlassesListingServiceModel, AdminGlassesListingViewModel>();
 
             this.CreateMap<Comment, CommentServiceModel>()
                 .ForMember(x => x.User, cfg => cfg.MapFrom(x => x.User.UserName.Substring(0, x.User.UserName.IndexOf("@"))))

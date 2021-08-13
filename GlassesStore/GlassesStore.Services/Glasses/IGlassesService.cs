@@ -6,7 +6,7 @@
     {
         GlassesServiceModel GetById(int id);
 
-        IEnumerable<GlassesServiceModel> All();
+        GlassesListingServiceModel All(int currentPage, int glassesPerPage);
 
         GlassesListingServiceModel Search(string searchTerm, int currentPage, int glassesPerPage);
 

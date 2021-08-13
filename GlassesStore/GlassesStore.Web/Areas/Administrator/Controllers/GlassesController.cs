@@ -17,9 +17,9 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
             this.glassesService = glassesService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] AdminGlassesListingViewModel query)
         {
-            var model = mapper.Map<List<GlassesViewModel>>(glassesService.All());
+            var model = mapper.Map<AdminGlassesListingViewModel>(glassesService.All(query.CurrentPage, AdminGlassesListingViewModel.GlassesPerPage));
 
             return View(model);
         }

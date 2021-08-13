@@ -24,6 +24,10 @@
     <ProjectReference Include="..\GlassesStore.Services\GlassesStore.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Administrator\Views\Shared\" />
+  </ItemGroup>
+
 
 
 </Project>
