@@ -25,5 +25,7 @@ namespace GlassesStore.Services.Comment
                 string content);
 
         IEnumerable<CommentServiceModel> GetCommentsForUser(string id);
+
+        IEnumerable<CommentServiceModel> All();
     }
 }

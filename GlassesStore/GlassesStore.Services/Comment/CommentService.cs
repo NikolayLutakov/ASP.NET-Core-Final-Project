@@ -114,5 +114,10 @@
             .ProjectTo<CommentServiceModel>(mapper.ConfigurationProvider)
             .ToList();
 
+        public IEnumerable<CommentServiceModel> All()
+        => data.Comments
+            .OrderByDescending(x => x.CreatedOn)
+            .ProjectTo<CommentServiceModel>(mapper.ConfigurationProvider)
+            .ToList();
     }
 }

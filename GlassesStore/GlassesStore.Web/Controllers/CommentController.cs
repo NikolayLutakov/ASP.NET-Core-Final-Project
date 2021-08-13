@@ -5,6 +5,7 @@
     using GlassesStore.Web.Models.Comment;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using static GlassesStore.Models.Common.Constants.AdministratorConstants;
     
     [Authorize]
     public class CommentController : Controller
@@ -103,6 +104,19 @@
         public IActionResult MyComments()
         {
             var model = commentService.GetCommentsForUser(User.Id());
+
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            return View(model);
+        }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult AllComments()
+        {
+            var model = commentService.All();
 
             if (model == null)
             {

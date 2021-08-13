@@ -4,6 +4,10 @@
     ViewData["Title"] = "Shop Buy";
 }
 
+<div class="mb-3">
+    <a class="btn btn-light" asp-area="" asp-controller="Shop" asp-action="Details" asp-route-id="@Model.ProductToBuy.Id">Back</a>
+</div>
+
 <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
     <h2 class="text-center">Purchase confirm</h2>
     <form method="post">
@@ -23,7 +27,7 @@
                 <option value="">--Select--</option>
                 @foreach (var card in Model.UserCards)
                 {
-                    <option value="@card.Id">@card.Number</option>
+                    <option value="@card.Id">Card # @card.Number</option>
                 }
             </select>
             <span asp-validation-for="@Model.CardId" class="small text-danger"></span>

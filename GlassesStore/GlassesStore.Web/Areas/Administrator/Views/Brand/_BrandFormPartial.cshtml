@@ -1,19 +1,22 @@
 ﻿@model BrandFormViewModel
 
+    <div class="mb-3">
+        <a class="btn btn-light" asp-area="Administrator" asp-controller="Brand" asp-action="Index">Back</a>
+    </div>
 
-<form method="post">
-    <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
-    <div class="form-group">
-        <label asp-for="@Model.Name"></label>
-        <input asp-for="@Model.Name" class="form-control" placeholder="Enter brand..">
-        <span asp-validation-for="@Model.Name" class="small text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.Description"></label>
-        <textarea asp-for="@Model.Description" class="form-control" rows="3" placeholder="Enter description..."></textarea>
-        <span asp-validation-for="@Model.Description" class="small text-danger"></span>
-    </div>
-    <input class="btn btn-primary mt-3" type="submit" value="Save" />
-</form>
+    <form method="post">
+        <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+        <div class="form-group">
+            <label asp-for="@Model.Name"></label>
+            <input asp-for="@Model.Name" class="form-control" placeholder="Enter brand..">
+            <span asp-validation-for="@Model.Name" class="small text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Description"></label>
+            <textarea asp-for="@Model.Description" class="form-control" rows="3" placeholder="Enter description..."></textarea>
+            <span asp-validation-for="@Model.Description" class="small text-danger"></span>
+        </div>
+        <input class="btn btn-primary mt-3" type="submit" value="Save" />
+    </form>
 
 
