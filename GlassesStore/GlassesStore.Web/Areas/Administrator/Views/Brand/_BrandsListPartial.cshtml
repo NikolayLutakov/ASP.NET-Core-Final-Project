@@ -1,18 +1,19 @@
-﻿@model List<BrandViewModel>
+﻿@model IEnumerable<BrandServiceModel>
 
-<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-    <ul class="list-group list-group-flush">
-        @foreach (var brand in Model)
-        {
-            <li class="list-group-item">
-                @brand.Name
-                @brand.Description
+<div class="col-12 row">
+    @foreach (var brand in Model)
+    {
+        <div class="card col-4" style="width: 18rem;">
+            
+            <div class="card-body">
+                <h5 class="card-title">@brand.Name</h5>
+                <p class="card-text">@brand.Description</p>
                 <a asp-controller="Brand" asp-action="Edit" asp-route-id="@brand.Id" class="btn btn-warning">Edit</a>
                 @if (!brand.HasGlasses)
                 {
                     <a asp-controller="Brand" asp-action="Delete" asp-route-id="@brand.Id" class="btn btn-danger">Delete</a>
                 }
-            </li>
-        }
-    </ul>
+            </div>
+        </div>
+    }
 </div>

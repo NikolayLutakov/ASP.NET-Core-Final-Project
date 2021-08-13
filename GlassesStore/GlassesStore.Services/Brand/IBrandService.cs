@@ -5,6 +5,8 @@
 
     public interface IBrandService
     {
+        BrandListingServiceModel All(int currentPage, int glassesPerPage);
+
         IEnumerable<BrandServiceModel> All();
 
         BrandServiceModel GetById(int id);

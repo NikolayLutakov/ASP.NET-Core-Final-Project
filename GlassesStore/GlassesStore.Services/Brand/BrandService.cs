@@ -68,10 +68,23 @@
 
         }
 
-        public IEnumerable<BrandServiceModel> All()
-            => data.Brands.OrderBy(b => b.Name)
-                .ProjectTo<BrandServiceModel>(mapper.ConfigurationProvider)
-                .ToList();
+        public BrandListingServiceModel All(int currentPage, int glassesPerPage)
+        {
+            var brandssQuery = data.Brands.OrderBy(b => b.Name);
+
+            var totalBrands = brandssQuery.Count();
+
+            var brands = brandssQuery.Skip((currentPage - 1) * glassesPerPage)
+                .Take(glassesPerPage).ProjectTo<BrandServiceModel>(this.mapper.ConfigurationProvider);
+
+            return new BrandListingServiceModel
+            {
+                TotalBrands = totalBrands,
+                Brands = brands,
+                CurrentPage = currentPage
+            };
+        }
+
 
         public BrandServiceModel GetById(int id)
             => data.Brands.Where(x => x.Id == id)
@@ -102,5 +115,9 @@
 
             return true;
         }
+        public IEnumerable<BrandServiceModel> All()
+           => data.Brands.OrderBy(b => b.Name)
+               .ProjectTo<BrandServiceModel>(mapper.ConfigurationProvider)
+               .ToList();
     }
 }

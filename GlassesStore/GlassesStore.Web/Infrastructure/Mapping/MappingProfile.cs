@@ -62,6 +62,8 @@
 
             this.CreateMap<BrandServiceModel, BrandViewModel>();
 
+            this.CreateMap<BrandListingServiceModel, BrandListingViewModel>();
+
             this.CreateMap<BrandServiceModel, BrandFormViewModel>();
 
             this.CreateMap<GlassesType, GlassesTypeServiceModel>();
