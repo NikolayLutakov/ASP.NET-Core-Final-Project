@@ -65,7 +65,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(CommentFormViewModel model)
+        public IActionResult Edit(CommentFormViewModel model, bool flag)
         {
             if (!ModelState.IsValid)
             {
@@ -77,17 +77,39 @@
                 return BadRequest();
             }
 
+            if (flag)
+            {
+                return RedirectToAction("MyComments", "Comment");
+            }
+
             return RedirectToAction("Details", "Shop", new { id = model.GlassesId });
         }
 
-        public IActionResult Delete(int commentId, int productId)
+        public IActionResult Delete(int commentId, int productId, bool flag)
         {
             if (!commentService.Delete(commentId, User.Id()))
             {
                 return BadRequest();
             }
 
+            if (flag)
+            {
+                return RedirectToAction("MyComments", "Comment");
+            }
+
             return RedirectToAction("Details", "Shop", new { id = productId });
+        }
+
+        public IActionResult MyComments()
+        {
+            var model = commentService.GetCommentsForUser(User.Id());
+
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            return View(model);
         }
     }
 }

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CommentServiceModel>
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default widget">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+                <h3 class="panel-title">
+                    Comments (@Model.Count())
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    @foreach (var comment in Model)
+                    {
+                        <li class="list-group-item">
+                            <div class="row col-12">
+                                <div class="col-xs-10 col-md-11">
+                                    <div>
+                                        <div class="mic-info">
+                                            By: <b>@comment.User</b> on @comment.CreatedOn
+                                        </div>
+                                    </div>
+                                    <div class="comment-text">
+                                        @comment.Content
+                                    </div>
+                                    @if (comment.UserId == User.Id())
+                                    {
+                                        <div class="action">
+                                            <a type="button" class="btn btn-primary btn-xs" title="Edit" asp-controller="Comment" asp-action="Edit" asp-route-commentId="@comment.Id" asp-route-productId="@comment.GlassesId" asp-route-flag="@ViewBag.Flag">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                            <a type="button" class="btn btn-danger btn-xs" title="Delete" asp-controller="Comment" asp-action="Delete" asp-route-commentId="@comment.Id" asp-route-productId="@comment.GlassesId" asp-route-flag="@ViewBag.Flag">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

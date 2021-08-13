@@ -68,7 +68,8 @@
             this.CreateMap<GlassesListingServiceModel, GlassesListingViewModel>();
 
             this.CreateMap<Comment, CommentServiceModel>()
-                .ForMember(x => x.User, cfg => cfg.MapFrom(x => x.User.UserName.Substring(0, x.User.UserName.IndexOf("@"))));
+                .ForMember(x => x.User, cfg => cfg.MapFrom(x => x.User.UserName.Substring(0, x.User.UserName.IndexOf("@"))))
+                .ForMember(x => x.CreatedOn, cfg => cfg.MapFrom(x => x.CreatedOn.ToString("d")));
 
             this.CreateMap<Purchase, PurchaseServiceModel>()
                 .ForMember(x => x.Date, cfg => cfg.MapFrom(x => x.Date.ToString("d")))

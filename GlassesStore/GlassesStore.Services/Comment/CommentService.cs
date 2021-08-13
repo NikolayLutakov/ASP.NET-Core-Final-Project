@@ -6,6 +6,7 @@
     using GlassesStore.Models;
     using GlassesStore.Services.Comment.Models;
     using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
     using System.Linq;
 
     public class CommentService : ICommentService
@@ -99,6 +100,13 @@
             .Where(x => x.Id == id)
             .ProjectTo<CommentServiceModel>(mapper.ConfigurationProvider)
             .FirstOrDefault();
-        
+
+        public IEnumerable<CommentServiceModel> GetCommentsForUser(string id)
+            => data.Comments
+            .Where(x => x.UserId == id)
+            .OrderByDescending(x => x.CreatedOn)
+            .ProjectTo<CommentServiceModel>(mapper.ConfigurationProvider)
+            .ToList();
+
     }
 }
