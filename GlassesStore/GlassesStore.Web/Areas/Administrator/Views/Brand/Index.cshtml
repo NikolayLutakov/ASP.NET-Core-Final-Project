@@ -1,7 +1,9 @@
 ﻿@model BrandListingViewModel
 @{
-    ViewData["Title"] = "Brand Index";
+    ViewData["Title"] = "Brand";
 }
+
+<h2 class="text-center text-primary">@ViewData["Title"]</h2>
 
 <div class="mb-3">
     <a class="btn btn-success" asp-area="Administrator" asp-controller="Brand" asp-action="Add">Add Brand</a>

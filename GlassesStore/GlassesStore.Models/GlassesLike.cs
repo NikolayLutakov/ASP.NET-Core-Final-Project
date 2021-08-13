@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 namespace GlassesStore.Models
 {
-    public class GlassesRating
+    public class GlassesLike
     {
         public string UserId { get; set; }
 
@@ -12,7 +12,5 @@ namespace GlassesStore.Models
         public int GlassesId { get; set; }
 
         public Glasses Glasses { get; set; }
-
-        public double Rating { get; set; }
     }
 }

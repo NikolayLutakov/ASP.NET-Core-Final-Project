@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<GlassesServiceModel>
+@inject GlassesStore.Services.Like.ILikeService likeService
 
 <div class="col-12 row">
     @foreach (var glasses in Model)
@@ -9,7 +10,16 @@
                 <h5 class="card-title">@glasses.Brand</h5>
                 <p class="card-text">@glasses.ModelName</p>
                 <p class="card-text">@glasses.Type</p>
+                <p class="card-text"><b>Likes: @glasses.Likes.Count()</b></p>
                 <a asp-controller="Shop" asp-action="Details" asp-route-id="@glasses.Id" class="btn btn-primary">Details</a>
+                @if (!likeService.IsLiked(@glasses.Id, User.Id()))
+                {
+                    <a asp-controller="Like" asp-action="Like" asp-route-productId="@glasses.Id" asp-route-callerView="@ViewBag.Like" class="btn btn-link">Like</a>
+                }
+                else
+                {
+                    <a asp-controller="Like" asp-action="Unlike" asp-route-productId="@glasses.Id" asp-route-callerView="@ViewBag.Like" class="btn btn-link">Unlike</a>
+                }
             </div>
         </div>
     }

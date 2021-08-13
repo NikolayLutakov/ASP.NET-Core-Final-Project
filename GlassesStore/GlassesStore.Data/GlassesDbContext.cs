@@ -19,7 +19,7 @@
 
         public DbSet<Glasses> Glasses { get; set; }
 
-        public DbSet<GlassesRating> GlassesRatings { get; set; }
+        public DbSet<GlassesLike> GlassesLikes { get; set; }
 
         public DbSet<GlassesType> GlassesTypes { get; set; }
 
@@ -55,7 +55,7 @@
                 .OnDelete(DeleteBehavior.Restrict);
             });
 
-            builder.Entity<GlassesRating>(glassesRating =>
+            builder.Entity<GlassesLike>(glassesRating =>
             {
                 glassesRating.HasKey(x => new
                 {
@@ -64,7 +64,7 @@
                 });
 
                 glassesRating.HasOne(x => x.Glasses)
-                    .WithMany(x => x.GlassesRatings)
+                    .WithMany(x => x.GlassesLikes)
                     .HasForeignKey(x => x.GlassesId)
                     .OnDelete(DeleteBehavior.Restrict);
 
@@ -79,6 +79,7 @@
             builder.Entity<Purchase>(purchase =>
             {
                 purchase.HasKey(x => x.Id);
+                purchase.Property(p => p.Cost).HasPrecision(18, 2);
 
                 purchase.HasOne(x => x.Glasses)
                     .WithMany(x => x.Purchases)

@@ -1,6 +1,11 @@
 ﻿@model IEnumerable<CommentServiceModel>
 
-@{ ViewBag.Flag = true; }
+@{
+    ViewData["Title"] = "All Comments";
+    ViewBag.Flag = true;
+}
+
+<h2 class="text-center text-primary">@ViewData["Title"]</h2>
 
 <div class="mb-3">
     <a class="btn btn-light" asp-area="Administrator" asp-controller="Home" asp-action="Index">Back</a>

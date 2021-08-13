@@ -25,12 +25,13 @@
             .Where(x => x.UserId == id).ProjectTo<CardServiceModel>(mapper.ConfigurationProvider)
             .ToList();
 
-        public bool MakePurchase(int cardId, int productId)
+        public bool MakePurchase(int cardId, int productId, decimal price)
         {
             var purchase = new Purchase
             {
                 CardId = cardId,
-                GlassesId = productId
+                GlassesId = productId,
+                Cost = price
             };
 
             try

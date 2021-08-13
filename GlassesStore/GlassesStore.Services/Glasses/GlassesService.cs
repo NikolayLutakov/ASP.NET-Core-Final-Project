@@ -114,10 +114,25 @@
                 .Where(x => x.GlassesId == glassesToDelete.Id)
                 .ToList();
 
+            var likesToDelete = data.GlassesLikes
+                .Where(x => x.GlassesId == glassesToDelete.Id)
+                .ToList();
+
             if (glassesToDelete == null || glassesToDelete.Purchases.Count() > 0)
             {
                 return false;
             }
+
+            try
+            {
+                data.RemoveRange(likesToDelete);
+                data.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+
             try
             {
                 data.RemoveRange(commentsToDelete);
@@ -133,7 +148,7 @@
                 data.Remove(glassesToDelete);
                 data.SaveChanges();
             }
-            catch (DbUpdateException e)
+            catch (DbUpdateException)
             {
                 return false;
             }
@@ -150,7 +165,9 @@
             var totalGlasses = glassesQuery.Count();
 
             var glasses = glassesQuery.Skip((currentPage - 1) * glassesPerPage)
-                .Take(glassesPerPage).ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider);
+                .Take(glassesPerPage)
+                .ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider)
+                .AsSingleQuery();
 
             return new GlassesListingServiceModel
             {
@@ -196,8 +213,11 @@
 
             var totalGlasses = glassesQuery.Count();
 
-            var glasses = glassesQuery.Skip((currentPage - 1) * glassesPerPage)
-                .Take(glassesPerPage).ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider);
+            var glasses = glassesQuery
+                .Skip((currentPage - 1) * glassesPerPage)
+                .Take(glassesPerPage)
+                .ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider)
+                .AsSingleQuery();
 
             return new GlassesListingServiceModel
             {
@@ -210,6 +230,29 @@
         public GlassesServiceModel GetById(int id)
             => data.Glasses.Where(x => x.Id == id)
                 .ProjectTo<GlassesServiceModel>(mapper.ConfigurationProvider)
+                .AsSingleQuery()
                 .FirstOrDefault();
+
+        public GlassesListingServiceModel AllBooksForLikes(int currentPage, int glassesPerPage, IEnumerable<int> productIds)
+        {
+            var glassesQuery = data.Glasses
+                 .Where(x => productIds.Contains(x.Id))
+                 .OrderBy(x => x.Brand.Name)
+                 .ThenBy(x => x.Model);
+
+            var totalGlasses = glassesQuery.Count();
+
+            var glasses = glassesQuery.Skip((currentPage - 1) * glassesPerPage)
+                .Take(glassesPerPage)
+                .ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider)
+                .AsSingleQuery();
+
+            return new GlassesListingServiceModel
+            {
+                TotalGlasses = totalGlasses,
+                Glasses = glasses,
+                CurrentPage = currentPage
+            };
+        }
     }
 }

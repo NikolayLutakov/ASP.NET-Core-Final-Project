@@ -11,7 +11,7 @@ namespace GlassesStore.Services.Card
     {
         IEnumerable<CardServiceModel> GetCardsForUser(string id);
 
-        bool MakePurchase(int cardId, int productId);
+        bool MakePurchase(int cardId, int productId, decimal price);
 
         IEnumerable<PurchaseServiceModel> MyPurchases(string id);
     }

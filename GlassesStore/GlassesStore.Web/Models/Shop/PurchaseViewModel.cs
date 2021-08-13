@@ -19,5 +19,7 @@ namespace GlassesStore.Web.Models.Shop
         public int CardId { get; set; }
 
         public int ProductId { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

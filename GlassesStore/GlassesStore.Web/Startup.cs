@@ -18,6 +18,7 @@ namespace GlassesStore.Web
     using GlassesStore.Web.Infrastructure.Extensions;
     using GlassesStore.Services.Card;
     using GlassesStore.Services.Comment;
+    using GlassesStore.Services.Like;
 
     public class Startup
     {
@@ -28,7 +29,7 @@ namespace GlassesStore.Web
 
         public IConfiguration Configuration { get; }
 
- 
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<GlassesDbContext>(options =>
@@ -60,8 +61,9 @@ namespace GlassesStore.Web
             services.AddTransient<IGlassesService, GlassesService>();
             services.AddTransient<IBrandService, BrandService>();
             services.AddTransient<IGlassesTypeService, GlassesTypeService>();
-            services.AddTransient<ICardService, CardService>(); 
+            services.AddTransient<ICardService, CardService>();
             services.AddTransient<ICommentService, CommentService>();
+            services.AddTransient<ILikeService, LikeService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -74,7 +76,7 @@ namespace GlassesStore.Web
             CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
             app.PrepareDatabase();
-            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

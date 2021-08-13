@@ -73,7 +73,7 @@
                 return BadRequest();
             }
 
-            if (!cardService.MakePurchase(model.CardId, model.ProductId))
+            if (!cardService.MakePurchase(model.CardId, model.ProductId, model.Price))
             {
                 return BadRequest();
             }

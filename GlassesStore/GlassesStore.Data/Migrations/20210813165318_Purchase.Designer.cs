@@ -4,14 +4,16 @@ using GlassesStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GlassesStore.Data.Migrations
 {
     [DbContext(typeof(GlassesDbContext))]
-    partial class GlassesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210813165318_Purchase")]
+    partial class Purchase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,7 +172,7 @@ namespace GlassesStore.Data.Migrations
 
                     b.HasIndex("GlassesId");
 
-                    b.ToTable("GlassesLikes");
+                    b.ToTable("GlassesRatings");
                 });
 
             modelBuilder.Entity("GlassesStore.Models.GlassesType", b =>

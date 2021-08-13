@@ -34,7 +34,7 @@
         }
         public class Paging
         {
-            public const int GlassesPerPage = 6;
+            public const int GlassesPerPage = 1;
             public const int BrandsPerPage = 12;
         }
     }

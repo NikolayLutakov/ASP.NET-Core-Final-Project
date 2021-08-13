@@ -14,6 +14,7 @@
     using GlassesStore.Web.Models.Shop;
     using GlassesStore.Services.Card.Models;
     using GlassesStore.Services.Comment.Models;
+    using GlassesStore.Services.Like.Models;
 
     public class MappingProfile : Profile
     {
@@ -35,7 +36,7 @@
                 .ForMember(g => g.ModelName, cfg => cfg.MapFrom(g => g.Model))
                 .ForMember(g => g.Type, cfg => cfg.MapFrom(g => g.Type.Name))
                 .ForMember(g => g.Brand, cfg => cfg.MapFrom(g => g.Brand.Name))
-                .ForMember(g => g.Rating, cfg => cfg.MapFrom(g => (decimal)((g.GlassesRatings.Select(x => x.Rating).Sum() + 1) / (g.GlassesRatings.Count() + 1))))
+                .ForMember(g => g.Likes, cfg => cfg.MapFrom(g => g.GlassesLikes.Select(l => new LikeServiceModel { GlassesId = l.GlassesId, UserId = l.UserId })))
                 .ForMember(g => g.PurchasesCount, cfg => cfg.MapFrom(g => g.Purchases.Count()))
                 .ForMember(g => g.Comments, cfg => cfg.MapFrom(g => g.Comments.OrderByDescending(c => c.CreatedOn).Select(x => new CommentServiceModel 
                 {
@@ -80,7 +81,11 @@
                 .ForMember(x => x.Date, cfg => cfg.MapFrom(x => x.Date.ToString("d")))
                 .ForMember(x => x.Card, cfg => cfg.MapFrom(x => x.Card.Number))
                 .ForMember(x => x.Glasses, cfg => cfg.MapFrom(x => x.Glasses.Brand.Name + " " + x.Glasses.Model))
-                .ForMember(x => x.Price, cfg => cfg.MapFrom(x => x.Glasses.Price));
+                .ForMember(x => x.Price, cfg => cfg.MapFrom(x => x.Cost));
+
+            this.CreateMap<GlassesLike, LikeServiceModel>();
+
+            
         }
     }
 }

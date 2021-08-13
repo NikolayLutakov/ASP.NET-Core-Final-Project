@@ -14,5 +14,7 @@
         public int GlassesId { get; set; }
 
         public Glasses Glasses { get; set; }
+
+        public decimal Cost { get; set; }
     }
 }

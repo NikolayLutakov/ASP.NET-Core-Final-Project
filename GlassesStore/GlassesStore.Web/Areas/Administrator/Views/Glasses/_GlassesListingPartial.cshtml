@@ -11,7 +11,7 @@
                 <p class="card-text">@glasses.Description</p>
                 <p class="card-text">Price: @glasses.Price</p>
                 <p class="card-text">Type: @glasses.Type</p>
-                <p class="card-text">Rating: @glasses.Rating</p>
+                <p class="card-text">Likes: @glasses.Likes.Count()</p>
                 <p class="card-text">Comments count: @glasses.Comments.Count()</p>
                 <a asp-controller="Glasses" asp-action="Edit" asp-route-id="@glasses.Id" class="btn btn-primary">Edit</a>
                 @if (glasses.PurchasesCount == 0)

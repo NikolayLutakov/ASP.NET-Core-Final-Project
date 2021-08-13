@@ -6,6 +6,7 @@
     {
         GlassesServiceModel GetById(int id);
 
+        GlassesListingServiceModel AllBooksForLikes(int currentPage, int glassesPerPage, IEnumerable<int> productIds);
         GlassesListingServiceModel All(int currentPage, int glassesPerPage);
 
         GlassesListingServiceModel Search(string searchTerm, int currentPage, int glassesPerPage);

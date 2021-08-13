@@ -28,7 +28,7 @@
 
         public GlassesType Type { get; set; }
 
-        public IEnumerable<GlassesRating> GlassesRatings { get; set; } = new HashSet<GlassesRating>();
+        public IEnumerable<GlassesLike> GlassesLikes { get; set; } = new HashSet<GlassesLike>();
 
         public IEnumerable<Purchase> Purchases { get; set; } = new HashSet<Purchase>();
 

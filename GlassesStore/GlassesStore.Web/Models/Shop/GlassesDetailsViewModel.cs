@@ -1,4 +1,5 @@
 ﻿using GlassesStore.Services.Comment.Models;
+using GlassesStore.Services.Like.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace GlassesStore.Web.Models.Shop
         public string ImageUrl { get; set; }
         public string Brand { get; set; }
         public string Type { get; set; }
-        public decimal Rating { get; set; }
+        public IEnumerable<LikeServiceModel> Likes { get; set; }
         public int PurchasesCount { get; set; }
         public IEnumerable<CommentServiceModel> Comments { get; set; }
     }

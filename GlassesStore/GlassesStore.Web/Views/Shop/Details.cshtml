@@ -1,9 +1,13 @@
 ﻿@model GlassesDetailsViewModel
-
+@inject GlassesStore.Services.Like.ILikeService likeService
 @{
     ViewData["Title"] = "Product Details";
     ViewBag.Flag = false;
+    ViewBag.Like = "details";
 }
+
+<h2 class="text-center text-primary">@ViewData["Title"]</h2>
+
 <div class="mb-3">
     <a class="btn btn-light" asp-area="" asp-controller="Shop" asp-action="Index">Back</a>
 </div>
@@ -24,7 +28,6 @@
                 <h2 class="name">
                     @Model.Brand
                     <small>@Model.ModelName</small>
-                    <h5>Rating: @Model.Rating / 5.00</h5>
                 </h2>
                 <hr />
                 <h3 class="price-container">
@@ -37,13 +40,26 @@
                     @Model.Description
                 </div>
                 <hr />
+                <div class="description description-tabs">
+                    <b>Likes: @Model.Likes.Count()</b>
+                </div>
+                <hr />
                 <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-sm-12 col-md-5 col-lg-5">
                         <a asp-controller="Shop" asp-action="Buy" asp-route-id="@Model.Id" class="btn btn-success btn-lg">Buy ($@Model.Price)</a>
-
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-sm-12 col-md-5 col-lg-5">
                         <a asp-controller="Comment" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-light btn-lg">Add Comment</a>
+                    </div>
+                    <div class="col-sm-12 col-md-2 col-lg-2">
+                        @if (!likeService.IsLiked(@Model.Id, User.Id()))
+                        {
+                            <a asp-controller="Like" asp-action="Like" asp-route-productId="@Model.Id" asp-route-callerView="@ViewBag.Like" class="btn btn-link">Like</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Like" asp-action="Unlike" asp-route-productId="@Model.Id" asp-route-callerView="@ViewBag.Like" class="btn btn-link">Unlike</a>
+                        }
                     </div>
                 </div>
             </div>

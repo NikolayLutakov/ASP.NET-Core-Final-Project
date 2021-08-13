@@ -5,7 +5,7 @@
     public class User : IdentityUser
     {
 
-        public IEnumerable<GlassesRating> GlassesRatings { get; set; } = new HashSet<GlassesRating>();
+        public IEnumerable<GlassesLike> GlassesRatings { get; set; } = new HashSet<GlassesLike>();
 
         public IEnumerable<Card> Cards { get; set; } = new HashSet<Card>();
 

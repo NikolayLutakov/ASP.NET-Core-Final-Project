@@ -1,8 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "Admin Index";
+    ViewData["Title"] = "Admin Panel";
 }
 
-<h1>Admin area!</h1>
+<h2 class="text-center text-primary">@ViewData["Title"]</h2>
 
 <a class="nav-link text-dark" asp-area="Administrator" asp-controller="User" asp-action="All">Users</a>
 <a class="nav-link text-dark" asp-area="Administrator" asp-controller="Glasses" asp-action="Index">Glasses</a>
