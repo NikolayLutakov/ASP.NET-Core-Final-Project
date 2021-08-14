@@ -23,11 +23,9 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
         }
 
         [HttpGet]
-        public IActionResult All()
+        public IActionResult All([FromQuery] UserListingViewModel query)
         {
-            var users = userService.All();
-
-            var model = mapper.Map<List<UserViewModel>>(users);
+            var model = mapper.Map<UserListingViewModel>(userService.All(query.CurrentPage, UserListingViewModel.UsersPerPage));
 
             return View(model);
         }

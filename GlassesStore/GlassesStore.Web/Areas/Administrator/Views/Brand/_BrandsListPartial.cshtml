@@ -4,11 +4,12 @@
     @foreach (var brand in Model)
     {
         <div class="card col-4" style="width: 18rem;">
-            
             <div class="card-body">
                 <h5 class="card-title">@brand.Name</h5>
                 <p class="card-text">@brand.Description</p>
-                <a asp-controller="Brand" asp-action="Edit" asp-route-id="@brand.Id" class="btn btn-warning">Edit</a>
+            </div>
+            <div class="card-text mb-2 ml-3">
+                <a asp-controller="Brand" asp-action="Edit" asp-route-id="@brand.Id" class="btn btn-primary">Edit</a>
                 @if (!brand.HasGlasses)
                 {
                     <a asp-controller="Brand" asp-action="Delete" asp-route-id="@brand.Id" class="btn btn-danger">Delete</a>

@@ -31,9 +31,6 @@
         public MappingProfile()
         {
 
-            this.CreateMap<UserServiceModel, UserViewModel>()
-                .ForMember(b => b.Role, cfg => cfg.MapFrom(b => b.Roles.FirstOrDefault()));
-
             this.CreateMap<Glasses, GlassesServiceModel>()
                 .ForMember(g => g.ModelName, cfg => cfg.MapFrom(g => g.Model))
                 .ForMember(g => g.Type, cfg => cfg.MapFrom(g => g.Type.Name))
@@ -97,6 +94,8 @@
             this.CreateMap<PurchaseListingServiceModel, PurchaseListingViewModel>();
 
             this.CreateMap<CommentListingServiceModel, CommentListingViewModel>();
+
+            this.CreateMap<UserListingServiceModel, UserListingViewModel>();
 
         }
     }

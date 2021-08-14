@@ -1,13 +1,11 @@
 ﻿namespace GlassesStore.Services.Users
 {
-    using System.Collections.Generic;
     using System.Linq;
     using Microsoft.AspNetCore.Identity;
     using GlassesStore.Data;
     using GlassesStore.Models;
     using GlassesStore.Services.Users.Models;
     using static GlassesStore.Models.Common.Constants.AdministratorConstants;
-    using System.Security.Claims;
 
     public class UserService : IUserService
     {
@@ -20,18 +18,37 @@
             this.userManager = userManager;
         }
 
-        public IEnumerable<UserServiceModel> All()
+        public UserListingServiceModel All(int currentPage, int usersPerPage)
         {
 
-            var users = userManager.Users.Where(x => x.UserName != AdministratorUsername).Select(x => new UserServiceModel
+            var usersQuery = userManager.Users
+                .OrderBy(x => x.UserName)
+                .Where(x => x.UserName != AdministratorUsername)
+                .Select(x => new UserServiceModel
             {
                 Id = x.Id,
                 UserName = x.UserName,
-                Roles = userManager.GetRolesAsync(x).GetAwaiter().GetResult()
-            })
-            .ToList();
+                Role = userManager
+                .GetRolesAsync(x)
+                .GetAwaiter()
+                .GetResult()
+                .FirstOrDefault()
+            });
 
-            return users;
+            
+            var totalUsers = usersQuery.Count();
+
+            var users = usersQuery.Skip((currentPage - 1) * usersPerPage)
+                .Take(usersPerPage);
+
+            return new UserListingServiceModel
+            {
+                TotalUsers = totalUsers,
+                Users = users,
+                CurrentPage = currentPage
+            };
+
+           
         }
 
         public bool MakeAdmin(string id)

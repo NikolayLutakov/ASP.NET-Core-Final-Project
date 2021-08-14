@@ -40,6 +40,7 @@
             public const int CardsPerPage = 20;
             public const int PurchasesPage = 20;
             public const int CommentsPage = 20;
+            public const int UsersPerPage = 20;
         }
     }
 }

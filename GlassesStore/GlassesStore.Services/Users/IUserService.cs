@@ -1,11 +1,10 @@
 ﻿namespace GlassesStore.Services.Users
 {
     using System.Collections.Generic;
-    using GlassesStore.Models;
     using GlassesStore.Services.Users.Models;
     public interface IUserService
     {
-        IEnumerable<UserServiceModel> All();
+        UserListingServiceModel All(int currentPage, int usersPerPage);
 
         bool MakeAdmin(string id);
 
