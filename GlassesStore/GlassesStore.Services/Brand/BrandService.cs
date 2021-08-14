@@ -68,14 +68,14 @@
 
         }
 
-        public BrandListingServiceModel All(int currentPage, int glassesPerPage)
+        public BrandListingServiceModel All(int currentPage, int brandsPerPage)
         {
             var brandssQuery = data.Brands.OrderBy(b => b.Name);
 
             var totalBrands = brandssQuery.Count();
 
-            var brands = brandssQuery.Skip((currentPage - 1) * glassesPerPage)
-                .Take(glassesPerPage).ProjectTo<BrandServiceModel>(this.mapper.ConfigurationProvider);
+            var brands = brandssQuery.Skip((currentPage - 1) * brandsPerPage)
+                .Take(brandsPerPage).ProjectTo<BrandServiceModel>(this.mapper.ConfigurationProvider);
 
             return new BrandListingServiceModel
             {

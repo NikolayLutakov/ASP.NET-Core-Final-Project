@@ -1,18 +1,39 @@
-﻿using GlassesStore.Services.Card.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Services.Card
+﻿namespace GlassesStore.Services.Card
 {
+    using GlassesStore.Services.Card.Models;
+    using System;
+    using System.Collections.Generic;
     public interface ICardService
     {
         IEnumerable<CardServiceModel> GetCardsForUser(string id);
 
         bool MakePurchase(int cardId, int productId, decimal price);
 
-        IEnumerable<PurchaseServiceModel> MyPurchases(string id);
+        PurchaseListingServiceModel MyPurchases(
+            int currentPage,
+            int cardsPerPage,
+            string userId);
+
+        bool Add(
+            string number,
+            DateTime expiresOn,
+            string userId,
+            int cardTypeId);
+
+        bool Edit(
+            int cardId,
+            string number,
+            DateTime expiresOn,
+            string userId,
+            int cardTypeId);
+
+        CardServiceModel GetById(int cardId);
+
+        IEnumerable<CardTypeServiceModel> GetCardTypes();
+
+        CardListingServiceModel ListAllCardsForUser(
+            int currentPage,
+            int cardsPerPage,
+            string userId);
     }
 }

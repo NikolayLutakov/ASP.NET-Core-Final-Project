@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CardServiceModel>
+
+@{
+    var rowNumber = ViewBag.CurrentPage + Model.Count() - 1;
+}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Card Number</th>
+            <th scope="col">Card Type</th>
+            <th scope="col">Expires</th>
+            <th scope="col">Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var card in Model)
+        {
+        <tr>
+            <th scope="row">@rowNumber</th>
+            <td>@card.Number</td>
+            <td>@card.Type</td>
+            <td>@card.ExpiresOn</td>
+            <td>
+                <a class="btn btn-primary" asp-area="" asp-controller="Card" asp-action="Edit" asp-route-cardId="@card.Id">Edit</a>
+            </td>
+        </tr>
+            rowNumber++;
+        }
+    </tbody>
+</table>
+

@@ -81,9 +81,15 @@
             return RedirectToAction("Index", "Shop");
         }
 
-        public IActionResult MyPurchases()
+        public IActionResult MyPurchases([FromQuery] PurchaseListingViewModel query)
         {
-            var model = cardService.MyPurchases(User.Id());
+
+            var model = mapper
+                .Map<PurchaseListingViewModel>(cardService.MyPurchases(
+                                                                query.CurrentPage,
+                                                                PurchaseListingViewModel
+                                                                    .PurchasesPerPage,
+                                                                User.Id()));
 
             return View(model);
         }

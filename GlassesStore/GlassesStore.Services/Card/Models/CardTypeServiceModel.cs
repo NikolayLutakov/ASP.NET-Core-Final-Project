@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace GlassesStore.Services.Card.Models
 {
-    public class CardServiceModel
+    public class CardTypeServiceModel
     {
         public int Id { get; set; }
 
-        public string Number { get; set; }
-
-        public string ExpiresOn { get; set; }
-
-        public string Type { get; set; }
-
-        public int TypeId { get; set; }
+        public string TypeName { get; set; }
     }
 }

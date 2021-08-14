@@ -33,7 +33,7 @@
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return View(model);
             }
 
             if (!commentService.Add(model.UserId, model.GlassesId, model.Content))
@@ -70,7 +70,7 @@
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return View(model);
             }
 
             if (!commentService.Edit(model.Id, model.UserId, model.GlassesId, model.Content))

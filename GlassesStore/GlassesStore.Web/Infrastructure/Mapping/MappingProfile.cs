@@ -15,6 +15,7 @@
     using GlassesStore.Services.Card.Models;
     using GlassesStore.Services.Comment.Models;
     using GlassesStore.Services.Like.Models;
+    using GlassesStore.Web.Models.Card;
 
     public class MappingProfile : Profile
     {
@@ -54,7 +55,10 @@
 
             this.CreateMap<GlassesServiceModel, GlassesDetailsViewModel>();
 
-            this.CreateMap<Card, CardServiceModel>();
+            this.CreateMap<Card, CardServiceModel>()
+                .ForMember(x => x.ExpiresOn, cfg => cfg.MapFrom(x => x.ExpiresOn.ToString("d")))
+                .ForMember(x => x.Type, cfg => cfg.MapFrom(x => x.Type.TypeName))
+                .ForMember(x => x.TypeId, cfg => cfg.MapFrom(x => x.Type.Id));
 
             this.CreateMap<Brand, BrandServiceModel>()
                 .ForMember(g => g.HasGlasses, 
@@ -85,7 +89,12 @@
 
             this.CreateMap<GlassesLike, LikeServiceModel>();
 
-            
+            this.CreateMap<CardType, CardTypeServiceModel>();
+
+            this.CreateMap<CardListingServiceModel, CardListingViewModel>();
+
+            this.CreateMap<PurchaseListingServiceModel, PurchaseListingViewModel>();
+
         }
     }
 }

@@ -1,0 +1,33 @@
+﻿@model CardFormViewModel
+
+    <div class="mb-3">
+        <a class="btn btn-light" asp-area="" asp-controller="Card" asp-action="Index">Back</a>
+    </div>
+
+    <form method="post">
+        <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+        <div class="form-group">
+            <label asp-for="@Model.Number"></label>
+            <input asp-for="@Model.Number" class="form-control" placeholder="Enter card number..">
+            <span asp-validation-for="@Model.Number" class="small text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.ExpiresOn"></label>
+            <input asp-for="@Model.ExpiresOn" class="form-control">
+            <span asp-validation-for="@Model.ExpiresOn" class="small text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.TypeId"></label>
+            <select asp-for="@Model.TypeId" class="form-control">
+                <option value="">--Select--</option>
+                @foreach (var type in Model.TypesList)
+                {
+                    <option value="@type.Id">@type.TypeName</option>
+                }
+            </select>
+            <span asp-validation-for="@Model.TypeId" class="small text-danger"></span>
+        </div>
+        <input class="btn btn-primary mt-3" type="submit" value="Save" />
+    </form>
+
+

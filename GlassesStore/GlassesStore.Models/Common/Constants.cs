@@ -9,6 +9,7 @@
 
         public class Card
         {
+            public const string validationString = "^[0-9]{16}$";
             public const int NumberMaxLength = 16;
         }
 
@@ -34,8 +35,10 @@
         }
         public class Paging
         {
-            public const int GlassesPerPage = 1;
+            public const int GlassesPerPage = 9;
             public const int BrandsPerPage = 12;
+            public const int CardsPerPage = 20;
+            public const int PurchasesPage = 20;
         }
     }
 }
