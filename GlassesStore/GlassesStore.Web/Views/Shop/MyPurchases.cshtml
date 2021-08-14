@@ -11,9 +11,16 @@
     <a class="btn btn-light" asp-area="" asp-controller="Shop" asp-action="Index">Back</a>
 </div>
 
-<partial name="_PurchasesListingPartial" model="@Model.Purchases" />
+@if (!Model.Purchases.Any())
+{
+    <h2 class="text-center">You don't have purchases yet.</h2>
+}
+else
+{
 
-@{
+    <partial name="_PurchasesListingPartial" model="@Model.Purchases" />
+
+
     var previousPage = Model.CurrentPage - 1;
     if (previousPage < 1)
     {
@@ -21,33 +28,30 @@
     }
 
     var maxPage = Math.Ceiling((double)Model.TotalPurchases / PurchaseListingServiceModel.PurchasesPerPage);
-}
 
-@{
     var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
                                  !Model.Purchases.Any();
+
+
+
+    <div class="paging">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link btn @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                       asp-controller="Shop"
+                       asp-action="MyPurchases"
+                       asp-route-currentPage="@previousPage">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link btn disabled" href="#">@Model.CurrentPage of @maxPage</a></li>
+                <li class="page-item">
+                    <a class="page-link btn @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+                       asp-controller="Shop"
+                       asp-action="MyPurchases"
+                       asp-route-currentPage="@(Model.CurrentPage + 1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 }
-
-
-<div class="paging">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link btn @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
-                   asp-controller="Shop"
-                   asp-action="MyPurchases"
-                   asp-route-currentPage="@previousPage">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link btn disabled" href="#">@Model.CurrentPage of @maxPage</a></li>
-            <li class="page-item">
-                <a class="page-link btn @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
-                   asp-controller="Shop"
-                   asp-action="MyPurchases"
-                   asp-route-currentPage="@(Model.CurrentPage + 1)">Next</a>
-            </li>
-        </ul>
-    </nav>
-</div>
-
-
 

@@ -69,7 +69,7 @@
         }
 
         [HttpPost]
-        public IActionResult Edit(CommentFormViewModel model, bool flag)
+        public IActionResult Edit(CommentFormViewModel model, string callerView)
         {
             if (!ModelState.IsValid)
             {
@@ -81,27 +81,41 @@
                 return BadRequest();
             }
 
-            if (flag)
+            if (callerView == "myComments")
             {
                 return RedirectToAction("MyComments", "Comment");
             }
-
-            return RedirectToAction("Details", "Shop", new { id = model.GlassesId });
+            else if (callerView == "details")
+            {
+                return RedirectToAction("Details", "Shop", new { id = model.GlassesId });
+            }
+            else
+            {
+                return RedirectToAction("AllComments", "Comment");
+            }
         }
 
-        public IActionResult Delete(int commentId, int productId, bool flag)
+        public IActionResult Delete(int commentId, int productId, string callerView)
         {
             if (!commentService.Delete(commentId, User.Id()))
             {
                 return BadRequest();
             }
 
-            if (flag)
+            if (callerView == "allComments")
             {
-                return RedirectToAction("MyComments", "Comment");
+                return RedirectToAction("AllComments", "Comment");
+            }
+            else if (callerView == "details") 
+            {
+                return RedirectToAction("Details", "Shop", new { id = productId });
+            }
+            else
+            {
+                return RedirectToAction("MyComments", "Comment");             
             }
 
-            return RedirectToAction("Details", "Shop", new { id = productId });
+            
         }
 
         public IActionResult MyComments([FromQuery] CommentListingViewModel query)

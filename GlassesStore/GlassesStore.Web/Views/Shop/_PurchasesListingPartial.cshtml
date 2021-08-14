@@ -4,34 +4,27 @@
     var rowNumber = ViewBag.CurrentPage + Model.Count() - 1;
 }
 
-@if (!Model.Any())
-{
-    <h2 class="text-center">You don't have purchases yet.</h2>
-}
-else
-{
-    <table class="table">
-        <thead class="thead-dark">
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Card Number</th>
+            <th scope="col">Product</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var purchase in Model)
+        {
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Date</th>
-                <th scope="col">Card Number</th>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
+                <th scope="row">@rowNumber</th>
+                <td>@purchase.Date</td>
+                <td>@purchase.Card</td>
+                <td>@purchase.Glasses</td>
+                <td>@purchase.Price</td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var purchase in Model)
-            {
-                <tr>
-                    <th scope="row">@rowNumber</th>
-                    <td>@purchase.Date</td>
-                    <td>@purchase.Card</td>
-                    <td>@purchase.Glasses</td>
-                    <td>@purchase.Price</td>
-                </tr>
-                rowNumber++;
-            }
-        </tbody>
-    </table>
-}
+            rowNumber++;
+        }
+    </tbody>
+</table>

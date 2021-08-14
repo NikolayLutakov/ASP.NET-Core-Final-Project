@@ -1,15 +1,13 @@
 ﻿namespace GlassesStore.Web.Infrastructure.Extensions
 {
     using System;
-    using System.Linq;
-    using System.Threading.Tasks;
     using GlassesStore.Data;
     using GlassesStore.Models;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
-    using static GlassesStore.Models.Common.Constants.AdministratorConstants;
+    using GlassesStore.Dataseeder;
 
     public static class ApplicationBuilderExtensions
     {
@@ -41,71 +39,28 @@
         {
             var userManager = services.GetRequiredService<UserManager<User>>();
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+            var data = services.GetRequiredService<GlassesDbContext>();
 
-            Task
-                .Run(async () =>
-                {
-                    if (await roleManager.RoleExistsAsync(AdministratorRoleName))
-                    {
-                        return;
-                    }
+            var seeder = new Dataseeder(userManager, roleManager, data);
 
-                    var role = new IdentityRole { Name = AdministratorRoleName };
-
-                    await roleManager.CreateAsync(role);
-
-                    const string adminEmail = AdministratorUsername;
-                    const string adminPassword = AdministratorPassword;
-
-                    var user = new User
-                    {
-                        Email = adminEmail,
-                        UserName = adminEmail,
-                    };
-
-                    await userManager.CreateAsync(user, adminPassword);
-
-                    await userManager.AddToRoleAsync(user, role.Name);
-                })
-                .GetAwaiter()
-                .GetResult();
+            seeder.SeedUsers();
         }
 
         private static void SeedGlassesTypes(IServiceProvider services)
         {
             var data = services.GetRequiredService<GlassesDbContext>();
+            var seeder = new Dataseeder(data);
 
-            if (data.GlassesTypes.Any())
-            {
-                return;
-            }
+            seeder.SeedGlassesTypes();
 
-            data.GlassesTypes.AddRange(new[]
-            {
-                new GlassesType { Name = "Sunglasses"},
-                new GlassesType { Name = "Prescription glasses" },
-                new GlassesType { Name = "Lenses"}
-            });
-
-            data.SaveChanges();
         }
 
         private static void SeedCardTypes(IServiceProvider services)
         {
             var data = services.GetRequiredService<GlassesDbContext>();
+            var seeder = new Dataseeder(data);
 
-            if (data.CardTypes.Any())
-            {
-                return;
-            }
-
-            data.CardTypes.AddRange(new[]
-            {
-                new CardType { TypeName = "Debit"},
-                new CardType { TypeName = "Credit" },
-            });
-
-            data.SaveChanges();
+            seeder.SeedCardTypes();
         }
     }
 }
