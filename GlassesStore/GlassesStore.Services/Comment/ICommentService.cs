@@ -24,8 +24,13 @@ namespace GlassesStore.Services.Comment
                 int productId,
                 string content);
 
-        IEnumerable<CommentServiceModel> GetCommentsForUser(string id);
+        CommentListingServiceModel GetCommentsForUser(
+            int currentPage,
+            int commentsPerPage,
+            string userId);
 
-        IEnumerable<CommentServiceModel> All();
+        CommentListingServiceModel All(
+            int currentPage,
+            int commentsPerPage);
     }
 }

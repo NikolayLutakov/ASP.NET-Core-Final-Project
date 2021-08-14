@@ -5,9 +5,8 @@
     <input type="hidden" asp-for="@Model.UserId" value="@Model.UserId" />
     <input type="hidden" asp-for="@Model.GlassesId" value="@Model.GlassesId" />
     <div class="form-group">
-        <label asp-for="@Model.Content"></label>
-        <textarea asp-for="@Model.Content" class="form-control" placeholder="Enter text.."></textarea>
+        <textarea asp-for="@Model.Content" class="form-control" rows="10" placeholder="Enter text.."></textarea>
         <span asp-validation-for="@Model.Content" class="small text-danger"></span>
     </div>
-    <input class="btn btn-primary mt-3" type="submit" value="Save" />
+    <input class="btn btn-primary mt-3" type="submit" value="Submit" />
 </form>

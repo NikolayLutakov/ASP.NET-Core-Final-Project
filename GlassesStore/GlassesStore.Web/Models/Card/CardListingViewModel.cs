@@ -14,8 +14,6 @@ namespace GlassesStore.Web.Models.Card
 
         public int TotalCards { get; set; }
 
-        public string SearchTerm { get; set; }
-
         public IEnumerable<CardServiceModel> Cards { get; set; }
     }
 }

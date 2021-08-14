@@ -1,8 +1,8 @@
-﻿@model IEnumerable<CommentServiceModel>
-
+﻿@model CommentListingViewModel
 @{
     ViewData["Title"] = "My Comments";
     ViewBag.Flag = true;
+    ViewBag.CurrentPage = Model.CurrentPage;
 }
 
 <h2 class="text-center text-primary">@ViewData["Title"]</h2>
@@ -11,4 +11,40 @@
     <a class="btn btn-light" asp-area="" asp-controller="Home" asp-action="Index">Back</a>
 </div>
 
-<partial name="_CommentListingPartial" model="@Model" />
+<partial name="_CommentListingPartial" model="@Model.Comments" />
+
+@{
+    var previousPage = Model.CurrentPage - 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
+
+    var maxPage = Math.Ceiling((double)Model.TotalComments / CommentListingViewModel.CommentsPerPage);
+}
+
+@{
+    var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+                                 !Model.Comments.Any();
+}
+
+
+<div class="paging">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link btn @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                   asp-controller="Comment"
+                   asp-action="MyComments"
+                   asp-route-currentPage="@previousPage">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link btn disabled" href="#">@Model.CurrentPage of @maxPage</a></li>
+            <li class="page-item">
+                <a class="page-link btn @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+                   asp-controller="Comment"
+                   asp-action="MyComments"
+                   asp-route-currentPage="@(Model.CurrentPage + 1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>

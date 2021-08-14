@@ -16,6 +16,7 @@
     using GlassesStore.Services.Comment.Models;
     using GlassesStore.Services.Like.Models;
     using GlassesStore.Web.Models.Card;
+    using GlassesStore.Web.Models.Comment;
 
     public class MappingProfile : Profile
     {
@@ -94,6 +95,8 @@
             this.CreateMap<CardListingServiceModel, CardListingViewModel>();
 
             this.CreateMap<PurchaseListingServiceModel, PurchaseListingViewModel>();
+
+            this.CreateMap<CommentListingServiceModel, CommentListingViewModel>();
 
         }
     }

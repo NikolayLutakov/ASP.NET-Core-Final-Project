@@ -1,5 +1,6 @@
 ﻿namespace GlassesStore.Web.Controllers
 {
+    using AutoMapper;
     using GlassesStore.Services.Comment;
     using GlassesStore.Web.Infrastructure.Extensions;
     using GlassesStore.Web.Models.Comment;
@@ -11,10 +12,12 @@
     public class CommentController : Controller
     {
         private readonly ICommentService commentService;
+        private readonly IMapper mapper;
 
-        public CommentController(ICommentService commentService)
+        public CommentController(ICommentService commentService, IMapper mapper)
         {
             this.commentService = commentService;
+            this.mapper = mapper;
         }
 
         public IActionResult Add(int id)
@@ -101,9 +104,15 @@
             return RedirectToAction("Details", "Shop", new { id = productId });
         }
 
-        public IActionResult MyComments()
+        public IActionResult MyComments([FromQuery] CommentListingViewModel query)
         {
-            var model = commentService.GetCommentsForUser(User.Id());
+            var model = mapper
+                 .Map<CommentListingViewModel>(commentService
+                                             .GetCommentsForUser(
+                                                                 query.CurrentPage,
+                                                                 CommentListingViewModel
+                                                                     .CommentsPerPage,
+                                                                 User.Id()));
 
             if (model == null)
             {
@@ -114,14 +123,16 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult AllComments()
+        public IActionResult AllComments([FromQuery] CommentListingViewModel query)
         {
-            var model = commentService.All();
+            var model = mapper
+                  .Map<CommentListingViewModel>(commentService
+                                              .All(query.CurrentPage, CommentListingViewModel.CommentsPerPage));
 
             if (model == null)
             {
                 return BadRequest();
-            }
+            } 
 
             return View(model);
         }

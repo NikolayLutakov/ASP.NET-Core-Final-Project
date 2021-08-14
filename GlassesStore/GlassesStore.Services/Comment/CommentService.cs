@@ -107,17 +107,49 @@
             .ProjectTo<CommentServiceModel>(mapper.ConfigurationProvider)
             .FirstOrDefault();
 
-        public IEnumerable<CommentServiceModel> GetCommentsForUser(string id)
-            => data.Comments
-            .Where(x => x.UserId == id)
-            .OrderByDescending(x => x.CreatedOn)
-            .ProjectTo<CommentServiceModel>(mapper.ConfigurationProvider)
-            .ToList();
+        public CommentListingServiceModel GetCommentsForUser(
+            int currentPage,
+            int commentsPerPage,
+            string userId)
+        {
+            var commentsQuery = data.Comments
+                .Where(x => x.UserId == userId)
+                .OrderByDescending(x => x.CreatedOn);
 
-        public IEnumerable<CommentServiceModel> All()
-        => data.Comments
-            .OrderByDescending(x => x.CreatedOn)
-            .ProjectTo<CommentServiceModel>(mapper.ConfigurationProvider)
-            .ToList();
+            var totalComments = commentsQuery.Count();
+
+            var comments = commentsQuery.Skip((currentPage - 1) * commentsPerPage)
+                .Take(commentsPerPage)
+                .ProjectTo<CommentServiceModel>(mapper.ConfigurationProvider);
+
+            return new CommentListingServiceModel
+            {
+                TotalComments = totalComments,
+                Comments = comments,
+                CurrentPage = currentPage
+            };
+        }
+           
+
+        public CommentListingServiceModel All(
+            int currentPage,
+            int commentsPerPage)
+        {
+            var commentsQuery = data.Comments
+               .OrderByDescending(x => x.CreatedOn);
+
+            var totalComments = commentsQuery.Count();
+
+            var comments = commentsQuery.Skip((currentPage - 1) * commentsPerPage)
+                .Take(commentsPerPage)
+                .ProjectTo<CommentServiceModel>(mapper.ConfigurationProvider);
+
+            return new CommentListingServiceModel
+            {
+                TotalComments = totalComments,
+                Comments = comments,
+                CurrentPage = currentPage
+            };
+        }
     }
 }

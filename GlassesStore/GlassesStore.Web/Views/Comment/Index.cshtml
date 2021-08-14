@@ -1,18 +1,19 @@
-﻿@model CommentListingViewModel
+﻿@model CardListingViewModel
 
 @{
-    ViewData["Title"] = "All Comments";
-    ViewBag.Flag = true;
+    ViewData["Title"] = "My Cards";
     ViewBag.CurrentPage = Model.CurrentPage;
 }
+
 
 <h2 class="text-center text-primary">@ViewData["Title"]</h2>
 
 <div class="mb-3">
-    <a class="btn btn-light" asp-area="Administrator" asp-controller="Home" asp-action="Index">Back</a>
+    <a class="btn btn-success" asp-area="" asp-controller="Card" asp-action="Add">Add Card</a>
+    <a class="btn btn-light" asp-area="" asp-controller="Home" asp-action="Index">Back</a>
 </div>
 
-<partial name="_CommentListingPartial" model="@Model.Comments" />
+<partial name="_CardsListingPartial" model="@Model.Cards" />
 
 @{
     var previousPage = Model.CurrentPage - 1;
@@ -21,12 +22,12 @@
         previousPage = 1;
     }
 
-    var maxPage = Math.Ceiling((double)Model.TotalComments / CommentListingViewModel.CommentsPerPage);
+    var maxPage = Math.Ceiling((double)Model.TotalCards / CardListingViewModel.CardsPerPage);
 }
 
 @{
     var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
-                                 !Model.Comments.Any();
+                                 !Model.Cards.Any();
 }
 
 
@@ -35,15 +36,15 @@
         <ul class="pagination">
             <li class="page-item">
                 <a class="page-link btn @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
-                   asp-controller="Comment"
-                   asp-action="AllComments"
+                   asp-controller="Card"
+                   asp-action="Index"
                    asp-route-currentPage="@previousPage">Previous</a>
             </li>
             <li class="page-item"><a class="page-link btn disabled" href="#">@Model.CurrentPage of @maxPage</a></li>
             <li class="page-item">
                 <a class="page-link btn @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
-                   asp-controller="Comment"
-                   asp-action="AllComments"
+                   asp-controller="Card"
+                   asp-action="Index"
                    asp-route-currentPage="@(Model.CurrentPage + 1)">Next</a>
             </li>
         </ul>

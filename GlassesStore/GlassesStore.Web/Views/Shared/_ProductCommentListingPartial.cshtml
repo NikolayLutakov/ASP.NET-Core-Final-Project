@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CommentServiceModel>
 
 @{
-    var rowNumber = ViewBag.CurrentPage + Model.Count() - 1;
+    var rowNumber = 1;
 }
 
 <h3 class="panel-title">
@@ -43,4 +43,3 @@
         }
     </tbody>
 </table>
-
