@@ -1,16 +1,11 @@
-﻿using AutoMapper;
-using GlassesStore.Services.Users;
-using GlassesStore.Web.Areas.Administrator.Models;
-using GlassesStore.Web.Areas.Administrator.Models.User;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Web.Areas.Administrator.Controllers
+﻿namespace GlassesStore.Web.Areas.Administrator.Controllers
 {
+    using AutoMapper;
+    using GlassesStore.Services.Users;
+    using GlassesStore.Web.Areas.Administrator.Models.User;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Security.Claims;
+
     public class UserController : AdminController
     {
         private readonly IUserService userService;

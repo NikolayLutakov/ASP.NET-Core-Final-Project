@@ -16,9 +16,9 @@
 
         public IActionResult Index()
         {
-            if (this.User.IsInRole(AdministratorRoleName))
+            if (this.User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home", new { area = AdministratorRoleName });
+                return RedirectToAction("Index", "Shop");
             }
 
             return View();
