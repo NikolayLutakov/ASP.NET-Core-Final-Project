@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlassesStore.Services", "Gl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlassesStore.Web", "GlassesStore.Web\GlassesStore.Web.csproj", "{25F34719-29C1-4EF6-952A-D6B6BB9E80DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlassesStore.Dataseeder", "GlassesStore.Dataseeder\GlassesStore.Dataseeder.csproj", "{3684F4A1-3B62-41B0-87D7-78693D07B53B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{25F34719-29C1-4EF6-952A-D6B6BB9E80DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25F34719-29C1-4EF6-952A-D6B6BB9E80DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25F34719-29C1-4EF6-952A-D6B6BB9E80DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3684F4A1-3B62-41B0-87D7-78693D07B53B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3684F4A1-3B62-41B0-87D7-78693D07B53B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3684F4A1-3B62-41B0-87D7-78693D07B53B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3684F4A1-3B62-41B0-87D7-78693D07B53B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

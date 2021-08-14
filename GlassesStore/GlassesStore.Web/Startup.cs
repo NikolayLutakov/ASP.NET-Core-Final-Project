@@ -19,6 +19,9 @@ namespace GlassesStore.Web
     using GlassesStore.Services.Card;
     using GlassesStore.Services.Comment;
     using GlassesStore.Services.Like;
+    using GlassesStore.Services.Dataseed.UsersSeed;
+    using GlassesStore.Services.Dataseed.GlassesTypesSeed;
+    using GlassesStore.Services.Dataseed.CardTypesSeed;
 
     public class Startup
     {
@@ -64,6 +67,9 @@ namespace GlassesStore.Web
             services.AddTransient<ICardService, CardService>();
             services.AddTransient<ICommentService, CommentService>();
             services.AddTransient<ILikeService, LikeService>();
+            services.AddTransient<IUserSeedService, UserSeedService>();
+            services.AddTransient<IGlassesTypeSeedService, GlassesTypeSeedService>();
+            services.AddTransient<ICardTypeSeedService, CardTypeSeedService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

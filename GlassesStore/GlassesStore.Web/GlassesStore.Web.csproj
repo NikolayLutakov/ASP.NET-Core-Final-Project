@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GlassesStore.Dataseeder\GlassesStore.Dataseeder.csproj" />
     <ProjectReference Include="..\GlassesStore.Services\GlassesStore.Services.csproj" />
   </ItemGroup>
 

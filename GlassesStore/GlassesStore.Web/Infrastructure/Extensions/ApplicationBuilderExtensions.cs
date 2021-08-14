@@ -2,12 +2,12 @@
 {
     using System;
     using GlassesStore.Data;
-    using GlassesStore.Models;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
-    using GlassesStore.Dataseeder;
+    using GlassesStore.Services.Dataseed.UsersSeed;
+    using GlassesStore.Services.Dataseed.GlassesTypesSeed;
+    using GlassesStore.Services.Dataseed.CardTypesSeed;
 
     public static class ApplicationBuilderExtensions
     {
@@ -37,30 +37,24 @@
 
         private static void SeedAdministrator(IServiceProvider services)
         {
-            var userManager = services.GetRequiredService<UserManager<User>>();
-            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-            var data = services.GetRequiredService<GlassesDbContext>();
+            var userSeedService = services.GetRequiredService<IUserSeedService>();
 
-            var seeder = new Dataseeder(userManager, roleManager, data);
-
-            seeder.SeedUsers();
+            userSeedService.Seed();
         }
 
         private static void SeedGlassesTypes(IServiceProvider services)
         {
-            var data = services.GetRequiredService<GlassesDbContext>();
-            var seeder = new Dataseeder(data);
+            var glassesTypeSeedService = services.GetRequiredService<IGlassesTypeSeedService>();
 
-            seeder.SeedGlassesTypes();
+            glassesTypeSeedService.Seed();
 
         }
 
         private static void SeedCardTypes(IServiceProvider services)
         {
-            var data = services.GetRequiredService<GlassesDbContext>();
-            var seeder = new Dataseeder(data);
+            var cardTypeSeedService = services.GetRequiredService<ICardTypeSeedService>();
 
-            seeder.SeedCardTypes();
+            cardTypeSeedService.Seed();
         }
     }
 }
