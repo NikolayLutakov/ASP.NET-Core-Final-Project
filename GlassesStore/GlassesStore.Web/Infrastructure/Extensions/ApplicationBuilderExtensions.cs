@@ -8,6 +8,8 @@
     using GlassesStore.Services.Dataseed.UsersSeed;
     using GlassesStore.Services.Dataseed.GlassesTypesSeed;
     using GlassesStore.Services.Dataseed.CardTypesSeed;
+    using GlassesStore.Services.Dataseed.BrandSeed;
+    using GlassesStore.Services.Dataseed.GlassesSeed;
 
     public static class ApplicationBuilderExtensions
     {
@@ -19,11 +21,15 @@
 
             MigrateDatabse(services);
 
+            SeedCardTypes(services);
+
             SeedAdministrator(services);
 
             SeedGlassesTypes(services);
 
-            SeedCardTypes(services);
+            SeedBrands(services);
+
+            SeedGlasses(services);
 
             return app;
         }
@@ -55,6 +61,20 @@
             var cardTypeSeedService = services.GetRequiredService<ICardTypeSeedService>();
 
             cardTypeSeedService.Seed();
+        }
+
+        private static void SeedBrands(IServiceProvider services)
+        {
+            var brandSeedService = services.GetRequiredService<IBrandSeedService>();
+
+            brandSeedService.Seed();
+        }
+
+        private static void SeedGlasses(IServiceProvider services)
+        {
+            var glassesSeedService = services.GetRequiredService<IGlassesSeedService>();
+
+            glassesSeedService.Seed();
         }
     }
 }

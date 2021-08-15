@@ -1,8 +1,8 @@
 ﻿namespace GlassesStore.Services.Dataseed.CardTypesSeed
 {
+    using System.Linq;
     using GlassesStore.Data;
     using GlassesStore.Models;
-    using System.Linq;
 
     public class CardTypeSeedService : ICardTypeSeedService
     {
