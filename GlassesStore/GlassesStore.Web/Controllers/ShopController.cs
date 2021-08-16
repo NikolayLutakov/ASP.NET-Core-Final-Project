@@ -5,12 +5,10 @@
     using GlassesStore.Services.Glasses;
     using AutoMapper;
     using GlassesStore.Web.Models.Shop;
-    using System.Collections.Generic;
     using System.Linq;
-    using GlassesStore.Services.Users;
     using GlassesStore.Web.Infrastructure.Extensions;
     using GlassesStore.Services.Card;
-    using GlassesStore.Services.Card.Models;
+
 
     [Authorize]
     public class ShopController : Controller
@@ -29,11 +27,12 @@
         public IActionResult Index([FromQuery] GlassesListingViewModel query)
         {
             var result = mapper
-                .Map<GlassesListingViewModel>(glassesService.Search(query.SearchTerm, query.CurrentPage, GlassesListingViewModel.GlassesPerPage));
+                .Map<GlassesListingViewModel>(glassesService.Search(query.SearchTerm, query.CurrentPage, GlassesListingViewModel.GlassesPerPage, query.FilterByType, query.OrderBy));
             
             query.Glasses = result.Glasses;
             query.TotalGlasses = result.TotalGlasses;
-            
+            query.GlassesTypes = result.GlassesTypes;
+
             return View(query);
         }
 

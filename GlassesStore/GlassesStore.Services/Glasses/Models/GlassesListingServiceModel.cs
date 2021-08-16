@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GlassesStore.Services.GlassesType.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,12 @@ namespace GlassesStore.Services.Glasses.Models
 
         public string SearchTerm { get; set; }
 
+        public string OrderBy { get; set; }
+
+        public int FilterByType { get; set; }
+
         public IEnumerable<GlassesServiceModel> Glasses { get; set; }
+
+        public IEnumerable<GlassesTypeServiceModel> GlassesTypes { get; set; }
     }
 }

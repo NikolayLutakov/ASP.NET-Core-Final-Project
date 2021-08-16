@@ -42,5 +42,13 @@
             public const int CommentsPage = 20;
             public const int UsersPerPage = 12;
         }
+
+        public class Sorting
+        {
+            public const string PriceAsc = "priceAsc";
+            public const string PriceDesc = "priceDesc";
+            public const string Buy = "buy";
+            public const string Like = "like";
+        }
     }
 }

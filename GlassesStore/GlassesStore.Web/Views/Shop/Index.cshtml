@@ -12,6 +12,28 @@
             <input asp-for="SearchTerm">
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
+        <div class="form-group ml-2">
+            <label class="mr-1" asp-for="@Model.FilterByType"></label>
+            <select id="orderDropdown" asp-for="@Model.FilterByType" class="form-control" onchange="this.form.submit()">
+                <option value="">--All--</option>
+                @foreach (var type in Model.GlassesTypes)
+                {
+                    <option value="@type.Id">@type.Name</option>
+                }
+            </select>
+            <span asp-validation-for="@Model.OrderBy" class="small text-danger"></span>
+        </div>
+        <div class="form-group ml-2">
+            <label class="mr-1" asp-for="@Model.OrderBy"></label>
+            <select id="orderDropdown" asp-for="@Model.OrderBy" class="form-control" onchange="this.form.submit()">
+                <option value="">--Select--</option>
+                <option value="@PriceAsc">Price Ascending</option>
+                <option value="@PriceDesc">Price Descending</option>
+                <option value="@Buy">Most Buyed</option>
+                <option value="@Like">Most Liked</option>
+            </select>
+            <span asp-validation-for="@Model.OrderBy" class="small text-danger"></span>
+        </div>
     </form>
 </div>
 <partial name="_GlassesListingPartial" model="@Model.Glasses" />

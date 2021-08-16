@@ -28,7 +28,7 @@ namespace GlassesStore.Web.Controllers
             this.mapper = mapper;
         }
 
-        public IActionResult Like(int productId, string callerView)
+        public IActionResult Like(int productId, string callerView, [FromQuery]GlassesListingViewModel model)
         {
 
             if (!likeService.Like(productId, User.Id()))
@@ -40,10 +40,6 @@ namespace GlassesStore.Web.Controllers
             if (callerView == "details")
             {
                 return RedirectToAction("Details", "Shop", new { id = productId });
-            }
-            else if(callerView == "index")
-            {
-                return RedirectToAction("Index", "Shop");
             }
             else 
             {
@@ -78,7 +74,7 @@ namespace GlassesStore.Web.Controllers
             var likes = likeService.GetLikesForUser(User.Id()).Select(x => x.GlassesId);
 
             var model = mapper
-                .Map<GlassesListingViewModel>(glassesService.AllBooksForLikes(query.CurrentPage, GlassesListingViewModel.GlassesPerPage, likes));
+                .Map<GlassesListingViewModel>(glassesService.AllGlassesForLikes(query.CurrentPage, GlassesListingViewModel.GlassesPerPage, likes));
 
 
             return View(model);

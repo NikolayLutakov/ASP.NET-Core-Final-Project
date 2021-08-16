@@ -10,6 +10,7 @@
     using GlassesStore.Services.Glasses.Models;
     using GlassesStore.Services.GlassesType;
     using GlassesStore.Models;
+    using static GlassesStore.Models.Common.Constants.Sorting;
 
     public class GlassesService : IGlassesService
     {
@@ -154,29 +155,7 @@
             }
 
             return true;
-        }
-
-        public GlassesListingServiceModel All(int currentPage, int glassesPerPage)
-        {
-            var glassesQuery = data.Glasses
-                 .OrderBy(x => x.Brand.Name)
-                 .ThenBy(x => x.Model);
-
-            var totalGlasses = glassesQuery.Count();
-
-            var glasses = glassesQuery.Skip((currentPage - 1) * glassesPerPage)
-                .Take(glassesPerPage)
-                .ProjectTo<GlassesServiceModel>(this.mapper.ConfigurationProvider)
-                .AsSingleQuery();
-
-            return new GlassesListingServiceModel
-            {
-                TotalGlasses = totalGlasses,
-                Glasses = glasses,
-                CurrentPage = currentPage
-            };
-        }
-            
+        }    
 
         public GlassesFormServiceModel PopulateGlassesFormModel()
             => new GlassesFormServiceModel
@@ -200,19 +179,34 @@
              })
              .FirstOrDefault();
 
-        public GlassesListingServiceModel Search(string searchTerm, int currentPage, int glassesPerPage)
+        public GlassesListingServiceModel Search(string searchTerm, int currentPage, int glassesPerPage, int filterTypeId, string orderBy)
         {
-            IQueryable<Glasses> glassesQuery = data.Glasses.OrderBy(x => x.Brand.Name).ThenBy(x => x.Model);
+            IQueryable<Glasses> glassesQuery = data.Glasses;
+
+            if (filterTypeId != 0)
+            {
+                glassesQuery = glassesQuery.Where(x => x.Type.Id == filterTypeId);
+            }
+
+            glassesQuery = orderBy switch
+            {
+                PriceAsc => glassesQuery.OrderBy(g => g.Price),
+                PriceDesc => glassesQuery.OrderByDescending(g => g.Price),
+                Buy => glassesQuery.OrderByDescending(g => g.Purchases.Count()),
+                Like => glassesQuery.OrderByDescending(g => g.GlassesLikes.Count()),
+                _ => glassesQuery.OrderBy(x => x.Brand.Name).ThenBy(x => x.Model)
+            };
+
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
                 glassesQuery = glassesQuery
-                    .Where(x => (x.Brand.Name.ToLower() + " " + x.Model.ToLower() + " " + x.Description.ToLower() + " " + x.Type.Name.ToLower())
+                    .Where(x => (x.Brand.Name.ToLower() + " " + x.Description.ToLower() + " " + x.Type.Name.ToLower())
                     .Contains(searchTerm.ToLower()));          
             }
 
             var totalGlasses = glassesQuery.Count();
-
+            var types = glassesTypeService.All();
             var glasses = glassesQuery
                 .Skip((currentPage - 1) * glassesPerPage)
                 .Take(glassesPerPage)
@@ -223,7 +217,8 @@
             {
                 TotalGlasses = totalGlasses,
                 Glasses = glasses,
-                CurrentPage = currentPage
+                CurrentPage = currentPage,
+                GlassesTypes = types
             };
         }
 
@@ -233,7 +228,7 @@
                 .AsSingleQuery()
                 .FirstOrDefault();
 
-        public GlassesListingServiceModel AllBooksForLikes(int currentPage, int glassesPerPage, IEnumerable<int> productIds)
+        public GlassesListingServiceModel AllGlassesForLikes(int currentPage, int glassesPerPage, IEnumerable<int> productIds)
         {
             var glassesQuery = data.Glasses
                  .Where(x => productIds.Contains(x.Id))
