@@ -136,6 +136,7 @@
             return View(model);
         }
 
+
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult AllComments([FromQuery] CommentListingViewModel query)
         {

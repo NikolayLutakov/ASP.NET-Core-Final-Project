@@ -41,6 +41,7 @@
             public const int PurchasesPage = 20;
             public const int CommentsPage = 20;
             public const int UsersPerPage = 12;
+            public const int MessagesPerPage = 20;
         }
 
         public class Sorting
@@ -49,6 +50,17 @@
             public const string PriceDesc = "priceDesc";
             public const string Buy = "buy";
             public const string Like = "like";
+        }
+        public class Contacts
+        {
+            public const int NameMinLength = 3;
+            public const int NameMaxLength = 50;
+            public const int SubjectMinLength = 3;
+            public const int SubjectMaxLength = 30;
+            public const int EmailMinLength = 3;
+            public const int EmailMaxLength = 50;
+            public const int MessageMinLength = 5;
+            public const int MessageMaxLength = 300;
         }
     }
 }

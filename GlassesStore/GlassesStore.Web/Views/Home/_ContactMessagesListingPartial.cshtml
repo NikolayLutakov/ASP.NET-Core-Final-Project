@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ContactMessageServiceModel>
+
+    @{
+        var rowNumber = ViewBag.CurrentPage + Model.Count() - 1;
+    }
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-center">Status</th>
+                <th scope="col" class="text-center">Client Name</th>
+                <th scope="col" class="text-center">Client Email</th>
+                <th scope="col" class="text-center">Subject</th>
+                <th scope="col" class="text-center">Message</th>
+                <th scope="col" class="text-center">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in Model)
+            {
+            <tr>
+                <th scope="row" class="col-1">@rowNumber</th>
+                @if (message.IsRead)
+                {
+                    <th scope="row" class="col-1 text-success font-weight-bold text-center">✓</th>
+                }
+                else
+                {
+                    <th scope="row" class="col-1 text-danger text-center">*</th>
+                }
+
+                <td class="col-1">@message.Name</td>
+                <td class="col-1">@message.Email</td>
+                <td class="col-1">@message.Subject</td>
+                <td class="col-5">@message.Message</td>
+                <td class="col-2 text-center">
+                    @if (!message.IsRead)
+                    {
+                        <a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="MarkMessageRead" asp-route-messageId="@message.Id">Mark Read</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="MarkMessageUnread" asp-route-messageId="@message.Id">Mark Unred</a>
+                    }
+                </td>
+            </tr>
+                rowNumber++;
+            }
+        </tbody>
+    </table>

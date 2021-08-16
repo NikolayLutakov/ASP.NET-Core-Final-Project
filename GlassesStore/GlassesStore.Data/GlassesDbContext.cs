@@ -25,6 +25,8 @@
 
         public DbSet<Purchase> Purchases { get; set; }
 
+        public DbSet<ContactMessage> ContactMessages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Glasses>(glasseses =>
