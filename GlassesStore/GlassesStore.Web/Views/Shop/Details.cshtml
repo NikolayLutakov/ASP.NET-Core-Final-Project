@@ -43,25 +43,28 @@
                 <div class="description description-tabs">
                     <b>Likes: @Model.Likes.Count()</b>
                 </div>
-                <hr />
-                <div class="row">
-                    <div class="col-sm-12 col-md-5 col-lg-5">
-                        <a asp-controller="Shop" asp-action="Buy" asp-route-id="@Model.Id" class="btn btn-success btn-lg">Buy ($@Model.Price)</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-12 col-md-5 col-lg-5">
+                            <a asp-controller="Shop" asp-action="Buy" asp-route-id="@Model.Id" class="btn btn-success btn-lg">Buy ($@Model.Price)</a>
+                        </div>
+                        <div class="col-sm-12 col-md-5 col-lg-5">
+                            <a asp-controller="Comment" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-light btn-lg">Add Comment</a>
+                        </div>
+                        <div class="col-sm-12 col-md-2 col-lg-2">
+                            @if (!likeService.IsLiked(@Model.Id, User.Id()))
+                            {
+                                <a asp-controller="Like" asp-action="Like" asp-route-productId="@Model.Id" asp-route-callerView="@ViewBag.Like" class="btn btn-link">Like</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Like" asp-action="Unlike" asp-route-productId="@Model.Id" asp-route-callerView="@ViewBag.Like" class="btn btn-link">Unlike</a>
+                            }
+                        </div>
                     </div>
-                    <div class="col-sm-12 col-md-5 col-lg-5">
-                        <a asp-controller="Comment" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-light btn-lg">Add Comment</a>
-                    </div>
-                    <div class="col-sm-12 col-md-2 col-lg-2">
-                        @if (!likeService.IsLiked(@Model.Id, User.Id()))
-                        {
-                            <a asp-controller="Like" asp-action="Like" asp-route-productId="@Model.Id" asp-route-callerView="@ViewBag.Like" class="btn btn-link">Like</a>
-                        }
-                        else
-                        {
-                            <a asp-controller="Like" asp-action="Unlike" asp-route-productId="@Model.Id" asp-route-callerView="@ViewBag.Like" class="btn btn-link">Unlike</a>
-                        }
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>

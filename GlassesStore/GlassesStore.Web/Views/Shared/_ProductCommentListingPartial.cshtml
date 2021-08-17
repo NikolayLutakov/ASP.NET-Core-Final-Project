@@ -21,31 +21,39 @@ else
                 <th scope="col" class="text-center">Created By</th>
                 <th scope="col" class="text-center">Created On</th>
                 <th scope="col" class="text-center">Content</th>
-                <th scope="col" class="text-center">Edit</th>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <th scope="col" class="text-center">Edit</th>
+                }
+
             </tr>
         </thead>
         <tbody>
             @foreach (var comment in Model)
             {
                 <tr>
-                    <th scope="row" class="col-1">@rowNumber</th>
+                    <th scope="row" class="col-1 text-center">@rowNumber</th>
                     <td class="col-1"><b>@comment.User</b></td>
                     <td class="col-1">@comment.CreatedOn</td>
                     <td class="col-7">@comment.Content</td>
-                    <td class="col-2 text-center">
-                        @if (comment.UserId == User.Id() || User.IsInRole(AdministratorRoleName))
-                        {
-                            <div class="action">
-                                <a type="button" class="btn btn-primary btn-xs" title="Edit" asp-controller="Comment" asp-action="Edit" asp-route-commentId="@comment.Id" asp-route-productId="@comment.GlassesId" asp-route-callerView="@ViewBag.Comment">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </a>
-                                <a type="button" class="btn btn-danger btn-xs" title="Delete" asp-controller="Comment" asp-action="Delete" asp-route-commentId="@comment.Id" asp-route-productId="@comment.GlassesId" asp-route-callerView="@ViewBag.Comment">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </a>
-                            </div>
-                        }
-                    </td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <td class="col-2 text-center">
+                            @if (comment.UserId == User.Id() || User.IsInRole(AdministratorRoleName))
+                            {
+                                <div class="action">
+                                    <a type="button" class="btn btn-primary btn-xs" title="Edit" asp-controller="Comment" asp-action="Edit" asp-route-commentId="@comment.Id" asp-route-productId="@comment.GlassesId" asp-route-callerView="@ViewBag.Comment">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <a type="button" class="btn btn-danger btn-xs" title="Delete" asp-controller="Comment" asp-action="Delete" asp-route-commentId="@comment.Id" asp-route-productId="@comment.GlassesId" asp-route-callerView="@ViewBag.Comment">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </div>
+                            }
+                        </td>
+                    }
                 </tr>
+
                 rowNumber++;
             }
         </tbody>

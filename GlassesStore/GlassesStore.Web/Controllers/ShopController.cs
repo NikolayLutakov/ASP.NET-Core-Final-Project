@@ -10,7 +10,6 @@
     using GlassesStore.Services.Card;
 
 
-    [Authorize]
     public class ShopController : Controller
     {
         private readonly IGlassesService glassesService;
@@ -48,6 +47,7 @@
             return View(glasses);
         }
 
+        [Authorize]
         public IActionResult Buy(int id)
         {
             var model = new PurchaseViewModel()
@@ -59,6 +59,7 @@
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Buy(PurchaseViewModel model)
         {
@@ -80,6 +81,7 @@
             return RedirectToAction("Index", "Shop");
         }
 
+        [Authorize]
         public IActionResult MyPurchases([FromQuery] PurchaseListingViewModel query)
         {
 
