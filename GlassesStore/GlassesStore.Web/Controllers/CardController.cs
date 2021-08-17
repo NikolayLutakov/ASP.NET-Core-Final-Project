@@ -38,11 +38,13 @@
             return View(model);
         }
 
-        public IActionResult Add()
+        public IActionResult Add(bool flag, int productId)
         {
             var model = new CardFormViewModel()
             {
-                TypesList = cardService.GetCardTypes()
+                TypesList = cardService.GetCardTypes(),
+                Flag = flag,
+                ProductId = productId
             };
 
             return View(model);
@@ -61,6 +63,11 @@
             if (!cardService.Add(model.Number, model.ExpiresOn, User.Id(), model.TypeId))
             {
                 return BadRequest();
+            }
+
+            if (model.Flag == true)
+            {
+                return RedirectToAction("Buy", "Shop", new { id = model.ProductId });
             }
             
             return RedirectToAction("Index", "Card");

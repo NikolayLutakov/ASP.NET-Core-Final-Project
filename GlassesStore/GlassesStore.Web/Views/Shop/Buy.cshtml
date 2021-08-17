@@ -41,9 +41,11 @@
         }
         else
         {
-            <div class="form-group mt-3">
-                <h5 class="text-danger text-center">You don't have cards. Add card firs.</h5>
-            </div>
+            
+    <div class="form-group mt-3">
+        <h5 class="text-danger text-center">You don't have cards. Add card firs.</h5>
+        <a class="btn btn-success offset-5" asp-area="" asp-controller="Card" asp-action="Add" asp-route-flag="true" asp-route-productId="@Model.ProductToBuy.Id">Add Card</a>
+    </div>
         }
     </form>
 </div>

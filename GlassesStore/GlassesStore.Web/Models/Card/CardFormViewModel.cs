@@ -24,5 +24,9 @@
 
         public IEnumerable<CardTypeServiceModel> TypesList { get; set; }
 
+        public bool Flag { get; set; }
+
+        public int ProductId { get; set; }
+
     }
 }

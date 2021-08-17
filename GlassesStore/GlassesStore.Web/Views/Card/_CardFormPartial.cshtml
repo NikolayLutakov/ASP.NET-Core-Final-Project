@@ -1,11 +1,20 @@
 ﻿@model CardFormViewModel
 
-    <div class="mb-3">
+<div class="mb-3">
+    @if (Model.Flag == true)
+    {
+        <a class="btn btn-light" asp-area="" asp-controller="Shop" asp-action="Buy" asp-route-id="@Model.ProductId">Back</a>
+    }
+    else
+    {
         <a class="btn btn-light" asp-area="" asp-controller="Card" asp-action="Index">Back</a>
-    </div>
+    }
+
+</div>
 
     <form method="post">
         <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+        <input type="hidden" asp-for="@Model.ProductId" value="@Model.ProductId" />
         <div class="form-group">
             <label asp-for="@Model.Number"></label>
             <input asp-for="@Model.Number" class="form-control" placeholder="Enter card number..">
