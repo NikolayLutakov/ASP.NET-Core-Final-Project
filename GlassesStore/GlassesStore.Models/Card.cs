@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using static GlassesStore.Models.Common.Constants.Card;
+    using static GlassesStore.Constants.Constants.Card;
     public class Card
     {
         public int Id { get; set; }

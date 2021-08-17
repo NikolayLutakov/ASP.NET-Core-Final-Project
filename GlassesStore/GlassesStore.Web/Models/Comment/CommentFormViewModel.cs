@@ -1,7 +1,7 @@
 ﻿namespace GlassesStore.Web.Models.Comment
 {
     using System.ComponentModel.DataAnnotations;
-    using static GlassesStore.Models.Common.Constants.Comment;
+    using static GlassesStore.Constants.Constants.Comment;
 
     public class CommentFormViewModel
     {

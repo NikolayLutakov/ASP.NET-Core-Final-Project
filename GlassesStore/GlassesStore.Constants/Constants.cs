@@ -1,4 +1,4 @@
-﻿namespace GlassesStore.Models.Common
+﻿namespace GlassesStore.Constants
 {
     public class Constants
     {

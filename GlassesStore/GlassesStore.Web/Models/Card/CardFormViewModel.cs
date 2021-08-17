@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using GlassesStore.Services.Card.Models;
-    using static GlassesStore.Models.Common.Constants.Card;
+    using static GlassesStore.Constants.Constants.Card;
     public class CardFormViewModel
     {
         public int Id { get; set; }

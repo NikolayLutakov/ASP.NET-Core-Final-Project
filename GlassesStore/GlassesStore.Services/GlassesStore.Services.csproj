@@ -11,6 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\GlassesStore.Constants\GlassesStore.Constants.csproj" />
 	  <ProjectReference Include="..\GlassesStore.Data\GlassesStore.Data.csproj" />
 	</ItemGroup>
 

@@ -1,7 +1,7 @@
 ﻿namespace GlassesStore.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using static GlassesStore.Models.Common.Constants;
+    using static GlassesStore.Constants.Constants;
     public class CardType
     {
         public int Id { get; set; }

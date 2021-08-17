@@ -7,7 +7,7 @@
 
     public class AdminGlassesListingViewModel
     {
-        public const int GlassesPerPage = GlassesStore.Models.Common.Constants.Paging.GlassesPerPage;
+        public const int GlassesPerPage = Constants.Constants.Paging.GlassesPerPage;
 
         public int CurrentPage { get; set; } = 1;
 

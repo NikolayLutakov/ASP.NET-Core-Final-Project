@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
-using GlassesStore.Services.Glasses;
-using GlassesStore.Web.Areas.Administrator.Models.Glasses;
-
-namespace GlassesStore.Web.Areas.Administrator.Controllers
+﻿namespace GlassesStore.Web.Areas.Administrator.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using AutoMapper;
+    using GlassesStore.Services.Glasses;
+    using GlassesStore.Web.Areas.Administrator.Models.Glasses;
     public class GlassesController : AdminController
     {
         private readonly IGlassesService glassesService;

@@ -8,7 +8,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using static GlassesStore.Models.Common.Constants.AdministratorConstants;
+    using static GlassesStore.Constants.Constants.AdministratorConstants;
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

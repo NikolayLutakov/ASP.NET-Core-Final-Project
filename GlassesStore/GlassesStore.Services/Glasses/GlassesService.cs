@@ -10,7 +10,7 @@
     using GlassesStore.Services.Glasses.Models;
     using GlassesStore.Services.GlassesType;
     using GlassesStore.Models;
-    using static GlassesStore.Models.Common.Constants.Sorting;
+    using static GlassesStore.Constants.Constants.Sorting;
 
     public class GlassesService : IGlassesService
     {

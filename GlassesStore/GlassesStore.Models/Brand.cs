@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using static GlassesStore.Models.Common.Constants;
+    using static GlassesStore.Constants.Constants;
     public class Brand
     {
         public int Id { get; set; }

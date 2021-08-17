@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Services.Users.Models
+﻿namespace GlassesStore.Services.Users.Models
 {
+    using System.Collections.Generic;
     public class UserListingServiceModel
     {
-        public const int UsersPerPage = GlassesStore.Models.Common.Constants.Paging.UsersPerPage;
+        public const int UsersPerPage = Constants.Constants.Paging.UsersPerPage;
 
         public int CurrentPage { get; set; } = 1;
 

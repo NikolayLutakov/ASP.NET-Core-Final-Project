@@ -5,7 +5,7 @@
 
     public class ContactMessagesListingViewModel
     {
-        public const int MessagesPerPage = GlassesStore.Models.Common.Constants.Paging.MessagesPerPage;
+        public const int MessagesPerPage = Constants.Constants.Paging.MessagesPerPage;
 
         public int CurrentPage { get; set; } = 1;
 

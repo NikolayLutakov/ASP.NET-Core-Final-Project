@@ -9,7 +9,7 @@
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
-    using static GlassesStore.Models.Common.Constants.AdministratorConstants;
+    using static GlassesStore.Constants.Constants.AdministratorConstants;
 
     public class CommentService : ICommentService
     {

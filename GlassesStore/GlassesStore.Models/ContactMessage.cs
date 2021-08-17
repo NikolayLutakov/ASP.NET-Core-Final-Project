@@ -2,7 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using static GlassesStore.Models.Common.Constants.Contacts;
+    using static GlassesStore.Constants.Constants.Contacts;
     public class ContactMessage
     {
         public int Id { get; set; }

@@ -1,7 +1,7 @@
 ﻿namespace GlassesStore.Web.Models.Home
 {
     using System.ComponentModel.DataAnnotations;
-    using static GlassesStore.Models.Common.Constants.Contacts;
+    using static GlassesStore.Constants.Constants.Contacts;
     public class ContactFormViewModel
     {
         [Required(ErrorMessage = "This field is required")]

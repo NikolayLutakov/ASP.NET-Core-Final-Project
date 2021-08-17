@@ -2,7 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using static GlassesStore.Models.Common.Constants.Comment;
+    using static GlassesStore.Constants.Constants.Comment;
     public class Comment
     {
         public int Id { get; set; }

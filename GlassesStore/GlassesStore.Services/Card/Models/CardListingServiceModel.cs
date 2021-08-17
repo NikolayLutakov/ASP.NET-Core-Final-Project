@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Services.Card.Models
+﻿namespace GlassesStore.Services.Card.Models
 {
+    using System.Collections.Generic;
     public class CardListingServiceModel
     {
-        public const int CardsPerPage = GlassesStore.Models.Common.Constants.Paging.CardsPerPage;
+        public const int CardsPerPage = Constants.Constants.Paging.CardsPerPage;
 
         public int CurrentPage { get; set; } = 1;
 

@@ -6,7 +6,7 @@
     using GlassesStore.Web.Models.Comment;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using static GlassesStore.Models.Common.Constants.AdministratorConstants;
+    using static GlassesStore.Constants.Constants.AdministratorConstants;
     
     [Authorize]
     public class CommentController : Controller

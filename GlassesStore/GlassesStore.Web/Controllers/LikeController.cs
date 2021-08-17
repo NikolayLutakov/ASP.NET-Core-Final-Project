@@ -1,19 +1,14 @@
-﻿using AutoMapper;
-using GlassesStore.Services.Glasses;
-using GlassesStore.Services.Glasses.Models;
-using GlassesStore.Services.Like;
-using GlassesStore.Services.Like.Models;
-using GlassesStore.Web.Infrastructure.Extensions;
-using GlassesStore.Web.Models.Shop;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Web.Controllers
+﻿namespace GlassesStore.Web.Controllers
 {
+    using System.Linq;
+    using AutoMapper;
+    using GlassesStore.Services.Glasses;
+    using GlassesStore.Services.Like;
+    using GlassesStore.Web.Infrastructure.Extensions;
+    using GlassesStore.Web.Models.Shop;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     [Authorize]
     public class LikeController : Controller
     {

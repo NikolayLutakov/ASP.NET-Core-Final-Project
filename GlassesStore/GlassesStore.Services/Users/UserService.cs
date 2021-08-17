@@ -5,7 +5,7 @@
     using GlassesStore.Data;
     using GlassesStore.Models;
     using GlassesStore.Services.Users.Models;
-    using static GlassesStore.Models.Common.Constants.AdministratorConstants;
+    using static GlassesStore.Constants.Constants.AdministratorConstants;
 
     public class UserService : IUserService
     {

@@ -5,7 +5,7 @@
 
     public class UserListingViewModel
     {
-        public const int UsersPerPage = GlassesStore.Models.Common.Constants.Paging.UsersPerPage;
+        public const int UsersPerPage = Constants.Constants.Paging.UsersPerPage;
 
         public int CurrentPage { get; set; } = 1;
 

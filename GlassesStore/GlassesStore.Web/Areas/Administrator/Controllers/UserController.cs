@@ -17,7 +17,7 @@
             this.mapper = mapper;
         }
 
-        [HttpGet]
+  
         public IActionResult All([FromQuery] UserListingViewModel query)
         {
             var model = mapper.Map<UserListingViewModel>(userService.All(query.CurrentPage, UserListingViewModel.UsersPerPage));
@@ -25,7 +25,7 @@
             return View(model);
         }
 
-        [HttpGet]
+  
         public IActionResult MakeAdmin(string id)
         {
             var result = userService.MakeAdmin(id);

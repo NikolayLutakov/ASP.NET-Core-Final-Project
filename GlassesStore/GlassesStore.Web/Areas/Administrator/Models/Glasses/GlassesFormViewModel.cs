@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using GlassesStore.Services.Brand.Models;
-using GlassesStore.Services.GlassesType.Models;
-using static GlassesStore.Models.Common.Constants;
-
-namespace GlassesStore.Web.Areas.Administrator.Models.Glasses
+﻿namespace GlassesStore.Web.Areas.Administrator.Models.Glasses
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using GlassesStore.Services.Brand.Models;
+    using GlassesStore.Services.GlassesType.Models;
+    using static GlassesStore.Constants.Constants;
     public class GlassesFormViewModel
     {
         public int Id { get; set; }

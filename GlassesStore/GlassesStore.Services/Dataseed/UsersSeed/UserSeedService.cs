@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Identity;
     using GlassesStore.Data;
     using GlassesStore.Models;
-    using static GlassesStore.Models.Common.Constants.AdministratorConstants;
+    using static GlassesStore.Constants.Constants.AdministratorConstants;
 
     public class UserSeedService : IUserSeedService
     {

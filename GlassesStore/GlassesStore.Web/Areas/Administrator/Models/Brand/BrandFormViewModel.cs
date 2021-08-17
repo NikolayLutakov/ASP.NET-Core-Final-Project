@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using static GlassesStore.Models.Common.Constants;
-
-namespace GlassesStore.Web.Areas.Administrator.Models.Brand
+﻿namespace GlassesStore.Web.Areas.Administrator.Models.Brand
 {
+    using System.ComponentModel.DataAnnotations;
+    using static GlassesStore.Constants.Constants;
     public class BrandFormViewModel
     {
         public int Id { get; set; }

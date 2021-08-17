@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GlassesStore.Services.Contacts.Models
+﻿namespace GlassesStore.Services.Contacts.Models
 {
+    using System.Collections.Generic;
     public class ContactMessageListingServiceModel
     {
-        public const int MessagesPerPage = GlassesStore.Models.Common.Constants.Paging.MessagesPerPage;
+        public const int MessagesPerPage = Constants.Constants.Paging.MessagesPerPage;
 
         public int CurrentPage { get; set; } = 1;
 
