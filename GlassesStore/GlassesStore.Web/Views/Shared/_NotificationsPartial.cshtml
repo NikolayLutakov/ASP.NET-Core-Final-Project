@@ -1,0 +1,24 @@
+﻿@if (TempData[CreateGlobalKey] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData[CreateGlobalKey]
+    </div>
+
+}
+
+@if (TempData[UpdateGlobalKey] != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @TempData[UpdateGlobalKey]
+    </div>
+
+}
+
+@if (TempData[DeleteGlobalKey] != null)
+{
+    <div class="alert alert-warning" role="alert">
+        @TempData[DeleteGlobalKey]
+    </div>
+
+}
+

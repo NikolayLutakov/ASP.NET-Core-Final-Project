@@ -7,6 +7,10 @@
         public const int DescriptionMinLength = 10;
         public const int DescriptionMaxLength = 300;
 
+        public const string CreateGlobalKey = "CreateSuccess";
+        public const string UpdateGlobalKey = "UpdateSuccess";
+        public const string DeleteGlobalKey = "DeleteSuccess";
+
         public class Card
         {
             public const string validationString = "^[0-9]{16}$";

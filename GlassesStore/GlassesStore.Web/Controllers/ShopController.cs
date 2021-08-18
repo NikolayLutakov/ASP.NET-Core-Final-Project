@@ -8,7 +8,7 @@
     using System.Linq;
     using GlassesStore.Web.Infrastructure.Extensions;
     using GlassesStore.Services.Card;
-
+    using static Constants.Constants;
 
     public class ShopController : Controller
     {
@@ -78,6 +78,8 @@
                 return BadRequest();
             }
 
+
+            TempData[CreateGlobalKey] = "Product buyed successfuly.";
             return RedirectToAction("Index", "Shop");
         }
 

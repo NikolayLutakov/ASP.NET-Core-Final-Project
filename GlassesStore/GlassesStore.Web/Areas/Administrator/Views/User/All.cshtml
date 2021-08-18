@@ -4,6 +4,9 @@
     ViewData["Title"] = "All Users";
 }
 
+
+<partial name="_NotificationsPartial" />
+
 <h2 class="text-center text-primary">@ViewData["Title"]</h2>
 
 <a class="btn btn-light mb-3" asp-area="Administrator" asp-controller="Home" asp-action="Index">Back</a>
@@ -44,3 +47,12 @@
         </ul>
     </nav>
 </div>
+
+
+@section Scripts{
+    <script>
+            $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+                $(".salert").slideUp(500);
+            });
+    </script>
+}

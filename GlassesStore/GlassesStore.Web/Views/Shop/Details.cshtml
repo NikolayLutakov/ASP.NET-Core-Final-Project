@@ -6,6 +6,8 @@
     ViewBag.Like = "details";
 }
 
+<partial name="_NotificationsPartial" />
+
 <h2 class="text-center text-primary">@ViewData["Title"]</h2>
 
 <div class="mb-3">
@@ -73,3 +75,10 @@
     <partial name="_ProductCommentListingPartial" model="@Model.Comments" />
 </div>
 
+@section Scripts{
+    <script>
+        $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+            $(".salert").slideUp(500);
+        });
+    </script>
+}

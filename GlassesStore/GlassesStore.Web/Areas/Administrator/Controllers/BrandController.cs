@@ -4,6 +4,7 @@
     using GlassesStore.Services.Brand;
     using GlassesStore.Web.Areas.Administrator.Models.Brand;
     using Microsoft.AspNetCore.Mvc;
+    using static Constants.Constants;
     using static Constants.Constants.AdministratorConstants;
     public class BrandController : AdminController
     {
@@ -39,6 +40,8 @@
             {
                 return BadRequest();
             }
+
+            TempData[CreateGlobalKey] = "Brand created successfuly.";
             
             return RedirectToAction("Index", "Brand", new { area = AdministratorAreaName });
         }
@@ -61,6 +64,7 @@
                 return BadRequest();
             }
 
+            TempData[UpdateGlobalKey] = "Brand edited successfuly.";
             return RedirectToAction("Index", "Brand", new { area = AdministratorAreaName });
         }
 
@@ -71,6 +75,7 @@
                 return BadRequest();
             }
 
+            TempData[DeleteGlobalKey] = "Brand deleted successfuly.";
             return RedirectToAction("Index", "Brand", new { area = AdministratorAreaName });
         }
     }

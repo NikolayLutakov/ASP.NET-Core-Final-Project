@@ -6,6 +6,7 @@
     using GlassesStore.Web.Models.Comment;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using static GlassesStore.Constants.Constants;
     using static GlassesStore.Constants.Constants.AdministratorConstants;
     
     [Authorize]
@@ -44,6 +45,7 @@
                 return BadRequest();
             }
 
+            TempData[CreateGlobalKey] = "Comment created successfuly.";
             return RedirectToAction("Details", "Shop", new { id = model.GlassesId });
         }
 
@@ -81,6 +83,7 @@
                 return BadRequest();
             }
 
+            TempData[UpdateGlobalKey] = "Comment edited successfuly.";
             if (callerView == "myComments")
             {
                 return RedirectToAction("MyComments", "Comment");
@@ -102,6 +105,8 @@
                 return BadRequest();
             }
 
+
+            TempData[DeleteGlobalKey] = "Comment deleted successfuly.";
             if (callerView == "allComments")
             {
                 return RedirectToAction("AllComments", "Comment", new { area = AdministratorAreaName });

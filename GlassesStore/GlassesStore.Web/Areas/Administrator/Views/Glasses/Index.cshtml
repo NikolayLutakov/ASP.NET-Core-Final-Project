@@ -3,6 +3,8 @@
     ViewData["Title"] = "Glasses";
 }
 
+<partial name="_NotificationsPartial" />
+
 <h2 class="text-center text-primary">@ViewData["Title"]</h2>
 
 <div class="mb-3">
@@ -78,3 +80,11 @@
         </ul>
     </nav>
 </div>
+
+@section Scripts{
+    <script>
+        $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+            $(".salert").slideUp(500);
+        });
+    </script>
+}

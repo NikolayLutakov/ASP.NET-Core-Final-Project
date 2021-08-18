@@ -1,12 +1,13 @@
 ﻿namespace GlassesStore.Web.Controllers
 {
+    using System;
     using AutoMapper;
     using GlassesStore.Services.Card;
     using GlassesStore.Web.Infrastructure.Extensions;
     using GlassesStore.Web.Models.Card;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using System;
+    using static Constants.Constants;
 
     [Authorize]
     public class CardController : Controller
@@ -65,6 +66,8 @@
                 return BadRequest();
             }
 
+
+            TempData[CreateGlobalKey] = "Card added successfuly.";
             if (model.Flag == true)
             {
                 return RedirectToAction("Buy", "Shop", new { id = model.ProductId });
@@ -104,6 +107,7 @@
                 return BadRequest();
             }
 
+            TempData[UpdateGlobalKey] = "Card edited successfuly.";
             return RedirectToAction("Index", "Card");
         }
     }

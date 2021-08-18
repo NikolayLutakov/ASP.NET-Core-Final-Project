@@ -4,6 +4,7 @@
     using AutoMapper;
     using GlassesStore.Services.Glasses;
     using GlassesStore.Web.Areas.Administrator.Models.Glasses;
+    using static Constants.Constants;
     public class GlassesController : AdminController
     {
         private readonly IGlassesService glassesService;
@@ -51,6 +52,7 @@
                 return BadRequest();
             }
 
+            TempData[CreateGlobalKey] = "Glasses added successfuly.";
             return RedirectToAction("Index", "Glasses");
         }
 
@@ -92,6 +94,7 @@
                 return BadRequest();
             }
 
+            TempData[UpdateGlobalKey] = "Glasses edited successfuly.";
             return RedirectToAction("Index", "Glasses");
         }
 
@@ -123,7 +126,8 @@
             {
                 return BadRequest();
             }
-            
+
+            TempData[DeleteGlobalKey] = "Glasses deleted successfuly.";
             return RedirectToAction("Index", "Glasses");
         }
 

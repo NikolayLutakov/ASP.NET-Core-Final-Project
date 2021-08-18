@@ -41,7 +41,7 @@ namespace GlassesStore.Web
         {
             services.AddDbContext<GlassesDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("RemoteServerConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

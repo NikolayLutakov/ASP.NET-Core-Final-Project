@@ -5,6 +5,7 @@
     using GlassesStore.Web.Areas.Administrator.Models.User;
     using Microsoft.AspNetCore.Mvc;
     using System.Security.Claims;
+    using static Constants.Constants;
     using static Constants.Constants.AdministratorConstants;
 
     public class UserController : AdminController
@@ -36,6 +37,7 @@
                 return BadRequest();
             }
 
+            TempData[UpdateGlobalKey] = "Administrator added succesfuly.";
             return RedirectToAction("All", "User", new { area = AdministratorRoleName });
         }
 
@@ -53,6 +55,7 @@
                 return BadRequest();
             }
 
+            TempData[DeleteGlobalKey] = "Administrator removed succesfuly.";
             return RedirectToAction("All", "User", new { area = AdministratorRoleName });
         }
     }
