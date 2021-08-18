@@ -91,7 +91,7 @@
             }
             else
             {
-                return RedirectToAction("AllComments", "Comment");
+                return RedirectToAction("AllComments", "Comment", new { area = AdministratorAreaName });
             }
         }
 
@@ -104,7 +104,7 @@
 
             if (callerView == "allComments")
             {
-                return RedirectToAction("AllComments", "Comment");
+                return RedirectToAction("AllComments", "Comment", new { area = AdministratorAreaName });
             }
             else if (callerView == "details") 
             {
@@ -134,22 +134,6 @@
             }
 
             return View(model);
-        }
-
-
-        [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult AllComments([FromQuery] CommentListingViewModel query)
-        {
-            var model = mapper
-                  .Map<CommentListingViewModel>(commentService
-                                              .All(query.CurrentPage, CommentListingViewModel.CommentsPerPage));
-
-            if (model == null)
-            {
-                return BadRequest();
-            } 
-
-            return View(model);
-        }
+        }      
     }
 }

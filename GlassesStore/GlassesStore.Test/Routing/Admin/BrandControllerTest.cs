@@ -1,4 +1,4 @@
-﻿namespace GlassesStore.Test.Routing
+﻿namespace GlassesStore.Test.Routing.Admin
 {
     using GlassesStore.Web.Areas.Administrator.Controllers;
     using GlassesStore.Web.Areas.Administrator.Models.Brand;

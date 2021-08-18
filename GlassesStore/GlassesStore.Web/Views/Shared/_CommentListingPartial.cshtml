@@ -29,10 +29,10 @@
                     @if (comment.UserId == User.Id() || User.IsInRole(AdministratorRoleName))
                     {
                         <div class="action">
-                            <a type="button" class="btn btn-primary btn-xs" title="Edit" asp-controller="Comment" asp-action="Edit" asp-route-commentId="@comment.Id" asp-route-productId="@comment.GlassesId" asp-route-callerView="@ViewBag.Comment">
+                            <a type="button" class="btn btn-primary btn-xs" title="Edit" asp-area="" asp-controller="Comment" asp-action="Edit" asp-route-commentId="@comment.Id" asp-route-productId="@comment.GlassesId" asp-route-callerView="@ViewBag.Comment">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
-                            <a type="button" class="btn btn-danger btn-xs" title="Delete" asp-controller="Comment" asp-action="Delete" asp-route-commentId="@comment.Id" asp-route-productId="@comment.GlassesId" asp-route-callerView="@ViewBag.Comment">
+                            <a type="button" class="btn btn-danger btn-xs" title="Delete" asp-area="" asp-controller="Comment" asp-action="Delete" asp-route-commentId="@comment.Id" asp-route-productId="@comment.GlassesId" asp-route-callerView="@ViewBag.Comment">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </a>
                         </div>

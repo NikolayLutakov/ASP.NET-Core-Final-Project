@@ -55,12 +55,5 @@
             .Configuration()
             .ShouldMap("/Comment/MyComments")
             .To<CommentController>(c => c.MyComments(With.Any<CommentListingViewModel>()));
-
-        [Fact]
-        public void AllCommentsRouteShouldBeMapped()
-        => MyRouting
-            .Configuration()
-            .ShouldMap("/Comment/AllComments")
-            .To<CommentController>(c => c.AllComments(With.Any<CommentListingViewModel>()));
     }
 }

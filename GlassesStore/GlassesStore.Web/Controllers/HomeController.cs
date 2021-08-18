@@ -57,44 +57,6 @@
             }
 
             return RedirectToAction("Index", "Home");
-        }
-
-
-        [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult AllMessages([FromQuery] ContactMessagesListingViewModel query)
-        {
-            var model = mapper
-                 .Map<ContactMessagesListingViewModel>(contactService
-                                             .All(query.CurrentPage, ContactMessagesListingViewModel.MessagesPerPage));
-
-            if (model == null)
-            {
-                return BadRequest();
-            }
-
-            return View(model);
-        }
-
-        [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult MarkMessageRead(int messageId)
-        {
-            if (!contactService.MarkRead(messageId))
-            {
-                return BadRequest();
-            }
-
-            return RedirectToAction("AllMessages", "Home");
-        }
-
-        [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult MarkMessageUnread(int messageId)
-        {
-            if (!contactService.MarkUnread(messageId))
-            {
-                return BadRequest();
-            }
-
-            return RedirectToAction("AllMessages", "Home");
-        }
+        }   
     }
 }

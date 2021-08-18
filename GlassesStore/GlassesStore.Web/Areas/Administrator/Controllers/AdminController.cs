@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using static GlassesStore.Constants.Constants.AdministratorConstants;
 
-    [Area(AreaName)]
+    [Area(AdministratorAreaName)]
     [Authorize(Roles = AdministratorRoleName)]
     public class AdminController : Controller
     {

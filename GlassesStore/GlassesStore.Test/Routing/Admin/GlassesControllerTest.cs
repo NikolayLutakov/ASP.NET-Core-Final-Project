@@ -1,4 +1,4 @@
-﻿namespace GlassesStore.Test.Routing
+﻿namespace GlassesStore.Test.Routing.Admin
 {
     using Xunit;
     using MyTested.AspNetCore.Mvc;

@@ -27,7 +27,7 @@
 
         public class AdministratorConstants
         {
-            public const string AreaName = "Administrator";
+            public const string AdministratorAreaName = "Administrator";
             public const string AdministratorRoleName = "Administrator";
 
             public const string AdministratorUsername = "administrator@admin.com";

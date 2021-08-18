@@ -23,7 +23,7 @@
                         @if (User.IsInRole(AdministratorRoleName))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-danger" asp-area="Administrator" asp-controller="Home" asp-action="Index">Admin Panel</a>
+                                <a class="nav-link text-danger" asp-area="@AdministratorAreaName" asp-controller="Home" asp-action="Index">Admin Panel</a>
                             </li>
 
                         }
