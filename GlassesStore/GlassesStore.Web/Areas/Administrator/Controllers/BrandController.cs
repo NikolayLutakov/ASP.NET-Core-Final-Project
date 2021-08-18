@@ -1,11 +1,10 @@
-﻿using AutoMapper;
-using GlassesStore.Services.Brand;
-using GlassesStore.Web.Areas.Administrator.Models.Brand;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-
-namespace GlassesStore.Web.Areas.Administrator.Controllers
+﻿namespace GlassesStore.Web.Areas.Administrator.Controllers
 {
+    using AutoMapper;
+    using GlassesStore.Services.Brand;
+    using GlassesStore.Web.Areas.Administrator.Models.Brand;
+    using Microsoft.AspNetCore.Mvc;
+    using static Constants.Constants.AdministratorConstants;
     public class BrandController : AdminController
     {
         private readonly IBrandService brandService;
@@ -41,7 +40,7 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
                 return BadRequest();
             }
             
-            return RedirectToAction("Index", "Brand");
+            return RedirectToAction("Index", "Brand", new { area = AdministratorAreaName });
         }
 
         public IActionResult Edit(int id)
@@ -62,7 +61,7 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
                 return BadRequest();
             }
 
-            return RedirectToAction("Index", "Brand");
+            return RedirectToAction("Index", "Brand", new { area = AdministratorAreaName });
         }
 
         public IActionResult Delete(int id)
@@ -72,7 +71,7 @@ namespace GlassesStore.Web.Areas.Administrator.Controllers
                 return BadRequest();
             }
 
-            return RedirectToAction("Index", "Brand");
+            return RedirectToAction("Index", "Brand", new { area = AdministratorAreaName });
         }
     }
 }

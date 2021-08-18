@@ -180,7 +180,7 @@
               .Instance(c => c.WithUser())
               .Calling(c => c.MyComments(new CommentListingViewModel()))
               .ShouldReturn()
-              .View((view => view
-                  .WithModelOfType<CommentListingViewModel>()));
+              .View(view => view
+                  .WithModelOfType<CommentListingViewModel>());
     }
 }

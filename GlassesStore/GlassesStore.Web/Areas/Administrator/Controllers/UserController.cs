@@ -5,6 +5,7 @@
     using GlassesStore.Web.Areas.Administrator.Models.User;
     using Microsoft.AspNetCore.Mvc;
     using System.Security.Claims;
+    using static Constants.Constants.AdministratorConstants;
 
     public class UserController : AdminController
     {
@@ -35,7 +36,7 @@
                 return BadRequest();
             }
 
-            return RedirectToAction("All", "User");
+            return RedirectToAction("All", "User", new { area = AdministratorRoleName });
         }
 
         public IActionResult RevokeAdmin(string id)
@@ -52,7 +53,7 @@
                 return BadRequest();
             }
 
-            return RedirectToAction("All", "User");
+            return RedirectToAction("All", "User", new { area = AdministratorRoleName });
         }
     }
 }
