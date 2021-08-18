@@ -144,7 +144,7 @@
 
         [Theory]
         [InlineData(1, 1, "username", "id")]
-        public void DeleteShouldReturnViewWithModel(int commentId, int productId, string userName, string userId)
+        public void DeleteShouldRedirectToMyComments(int commentId, int productId, string userName, string userId)
           => MyController<CommentController>
               .Instance(c => c.WithUser(userId, userName)
                 .WithData(data => data
