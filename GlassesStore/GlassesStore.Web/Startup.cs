@@ -41,7 +41,7 @@ namespace GlassesStore.Web
         {
             services.AddDbContext<GlassesDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DockerConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
